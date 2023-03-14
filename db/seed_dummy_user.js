@@ -85,7 +85,7 @@ const data = [
         role: `Lab Tech`,
         email: `malcolmwang@sciency.com`,
         pass: `malcolmwang`,
-        photo: `../images/doesnotexist/male4.webp`,
+        photo: `../images/doesnotexist/male4.jpeg`,
         accesslevel: 3,
     }
 ]

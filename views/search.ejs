@@ -2,6 +2,6 @@
 <!-- <h2 class="news" style="font-size: 1.7em;">Latest News in Australia</h2> -->
 <ol>
     <% data.entries.forEach(entry => { %>
-        <li class="search-entry"><a href="<%= data.label %>/<%= entry.labid %>"><%= entry.name %></a></li>
+        <li class="search-entry"><a href="/<%= data.label %>/<%= entry.labid %>"><%= entry.name %></a></li>
     <% }); %>
 </ol>

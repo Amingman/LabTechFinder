@@ -4,7 +4,7 @@
 }
 
 *{
-    /* border: 1px solid red; */
+    border: 1px solid red;
     font-family: roboto-medium;
 }
 
@@ -26,6 +26,7 @@ header {
     grid-template-columns: min-content 1fr;
     justify-content: space-between;
     padding: 0;
+    z-index: 1;
     /* margin: auto; */
     /* border-bottom: 3px solid black; */
 }
@@ -210,6 +211,127 @@ footer {
 
 .icon-colour {
     color: #4d75a4;
+}
+
+.about-lab {
+    display: inline-block;
+    grid-template-columns: 1fr max-content;
+    /* justify-content: space-between; */
+}
+
+
+.desc-title {
+    display: grid;
+    padding: 5px;
+    text-align: left;
+    margin-left: 0px;
+}
+
+.desc-blurb {
+    display: grid;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.lab-desc {
+    font-size: 1.2em;
+    padding: 5px;
+    margin-bottom: 1em;
+}
+
+.pi-card {
+    position: relative;
+    display: grid;
+    justify-content: end;
+}
+
+.flip-outer {
+    perspective: 1000px;
+    /* display: grid;
+    margin: auto;
+    margin-right: 0px; */
+    float: right;
+}
+
+.flip-inner {
+    /* position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center; */
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+
+}
+
+.flip-outer:hover .flip-inner {
+    transform: rotateY(180deg);
+}
+
+
+
+
+.flip-front, .flip-back {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden; 
+
+    display: grid;
+    overflow: hidden;
+}
+
+.flip-back {
+    transform: rotateY(180deg);
+    background-color: dodgerblue;
+    color: white;
+}
+
+
+.pi-photo {
+    display: flex;
+    position: relative;
+
+    width: 25vw;
+    overflow: hidden;
+    grid-gap:0px;
+    object-fit: cover;
+    height: 100%;
+    padding: 10px;
+    z-index: -1;
+}
+
+.pi-name {
+    font-size: 2em;
+}
+
+.title-card {
+    display: grid;
+    gap: 1em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+
+.lab-members {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.member-photo {
+    display: grid;
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 100%;
+    overflow: hidden;
+    grid-gap:0px;
+    object-fit: cover;
+    height: 100%;
+    padding: 10px;
+    z-index: -1;
 }
 
 @media screen and (max-width: 500px) {

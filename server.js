@@ -205,7 +205,29 @@ app.post(`/lab/lab_search/bypi`, (req, res) => {
 })
 
 
+app.get(`/lab/:labid`, (req,res) => {
+    const labid = req.params.labid
+    const sql = `SELECT * FROM laboratories WHERE labid = $1;`
 
+    let data = {}
+
+    db.query(sql, [labid], (err, dbRes) => {
+        if (err) {
+            console.log(err);
+        }
+        data.labData = dbRes.rows[0]
+        const sql2 = `SELECT * FROM users WHERE labid = $1 ORDER BY accesslevel ASC;`
+
+        db.query(sql2, [labid], (err, dbRes2) => {
+            if (err) {
+                console.log(err);
+            }
+            data.userData = dbRes2.rows
+            // res.send({data})
+            res.render(`lab_page`, {data})
+        })
+    })
+})
 
 
 
