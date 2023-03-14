@@ -1,0 +1,30 @@
+CREATE DATABASE labtechfinder;
+
+DROP TABLE IF EXISTS laboratories;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS laboratories;
+
+CREATE TABLE laboratories (
+    labid SERIAL PRIMARY KEY,
+    name TEXT,
+    description TEXT,
+    email TEXT
+);
+
+
+CREATE TABLE users (
+    userid SERIAL PRIMARY KEY,
+    labid INTEGER,
+    name TEXT,
+    role TEXT,
+    email TEXT,
+    digpassword TEXT,
+    photo TEXT,
+    accesslevel INTEGER
+);
+
+CREATE TABLE skills (
+    userid INTEGER,
+    skill TEXT
+);
+
