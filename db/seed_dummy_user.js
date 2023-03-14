@@ -13,7 +13,7 @@ const data = [
         role: `PI`,
         email: `imeldabell@sciency.com`,
         pass: `imeldabell`,
-        photo: `../public/images/doesnotexist/female3.jpeg`,
+        photo: `../images/doesnotexist/female3.jpeg`,
         accesslevel: 1,
     },{
         lab: 2,
@@ -21,7 +21,7 @@ const data = [
         role: `Manager`,
         email: `cobyprescott@sciency.com`,
         pass: `cobyprescott`,
-        photo: `../public/images/doesnotexist/female2.png`,
+        photo: `../images/doesnotexist/female2.png`,
         accesslevel: 2,
     },{
         lab: 2,
@@ -29,7 +29,7 @@ const data = [
         role: `Animal Model Technician`,
         email: `zacsimmon@sciency.com`,
         pass: `zacsimmon`,
-        photo: `../public/images/doesnotexist/male2.webp`,
+        photo: `../images/doesnotexist/male2.webp`,
         accesslevel: 3,
     },{
         lab: 2,
@@ -37,7 +37,7 @@ const data = [
         role: `Research Officer`,
         email: `lousiealbescu@sciency.com`,
         pass: `lousiealbescu`,
-        photo: `../public/images/doesnotexist/female5.png`,
+        photo: `../images/doesnotexist/female5.png`,
         accesslevel: 3,
     },{
         lab: 3,
@@ -45,7 +45,7 @@ const data = [
         role: `PI`,
         email: `davidking@sciency.com`,
         pass: `davidking`,
-        photo: `../public/images/doesnotexist/male1.png`,
+        photo: `../images/doesnotexist/male1.png`,
         accesslevel: 1,
     },{
         lab: 3,
@@ -53,7 +53,7 @@ const data = [
         role: `Manager`,
         email: `anarossini@sciency.com`,
         pass: `annarossini`,
-        photo: `../public/images/doesnotexist/female1.webp`,
+        photo: `../images/doesnotexist/female1.webp`,
         accesslevel: 2,
     },{
         lab: 3,
@@ -61,7 +61,7 @@ const data = [
         role: `Biostatistician`,
         email: `brennansobol@sciency.com`,
         pass: `brennansobol`,
-        photo: `../public/images/doesnotexist/male3.webp`,
+        photo: `../images/doesnotexist/male3.webp`,
         accesslevel: 3,
     },{
         lab: 3,
@@ -69,7 +69,7 @@ const data = [
         role: `Postdoc Fellow`,
         email: `bellamyradu@sciency.com`,
         pass: `bellamyradu`,
-        photo: `../public/images/doesnotexist/male5.webp`,
+        photo: `../images/doesnotexist/male5.webp`,
         accesslevel: 3,
     },{
         lab: 3,
@@ -77,7 +77,7 @@ const data = [
         role: `Lab Tech`,
         email: `alexandravicario@sciency.com`,
         pass: `alexandravicario`,
-        photo: `../public/images/doesnotexist/female4.jpeg`,
+        photo: `../images/doesnotexist/female4.jpeg`,
         accesslevel: 3,
     },{
         lab: 3,
@@ -85,7 +85,7 @@ const data = [
         role: `Lab Tech`,
         email: `malcolmwang@sciency.com`,
         pass: `malcolmwang`,
-        photo: `../public/images/doesnotexist/male4.webp`,
+        photo: `../images/doesnotexist/male4.webp`,
         accesslevel: 3,
     }
 ]

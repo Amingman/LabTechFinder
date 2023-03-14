@@ -16,7 +16,10 @@ body {
 
 
 header {
+    position: fixed;
+    top: 0px;
     background-color: #4d75a4;
+    width: 100vw;
     height: 150px;
     display: grid;
     grid-template-columns: min-content 1fr;
@@ -46,29 +49,75 @@ header button {
     /* height: 70%; */
     align-content: end;
     justify-content: end;
-    margin-right: 1em;
+    margin-right: 2em;
     font-size: 1em;
     aspect-ratio: 5/3;
     border-radius: 10px;
 }
 
-
-
-
-main {
+.main-wrapper {
     padding-left: 2vw;
     padding-right: 2vw;
     padding-top: 2vw;
-    /* padding-right: 5vw; */
+    display: grid;
+    align-content: center;
+    text-align: center;
+    grid-template-columns: max-content 1fr;
+    margin-top: 150px;
+    gap: 0.5em;
 }
 
+nav {
+    /* position: fixed; */
+    text-align: left;
+    display: grid;
+    padding: 5px;
+    list-style: none;
+    align-items: center;
+    gap: 0.5em;
+    align-content: start;
+    border-left: 3px solid lightgray;
+    border-bottom: 3px solid lightgray;
+    border-radius: 5px;
+    box-shadow: -7px 7px 10px 1px lightsteelblue;
+    height: fit-content;
+}
 
+li {
+   font-size: 1.2em;
+   margin: auto;
+   margin-left: 0px;
+}
 
+li:hover {
+    text-decoration: underline;
+}
 
+.content {
+    padding: 10px;
+    text-align: left;
+    /* display: grid; */
+    /* margin: 0; */
+    /* margin-left: 200px; */
+}
+
+.welcome {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.news-card {
+    margin-top: 1em;
+    padding: 10px;
+    border: 2px solid steelblue;
+    border-radius: 10px;
+}
 
 @media screen and (max-width: 400px) {
     header {
         height: 100px;
+        width: 100%;
     }
     header img {
         height: 100px;
@@ -76,5 +125,6 @@ main {
     
     header button {
         font-size: 0.7em;
+        margin-right: 0.5em;
     }
 }
