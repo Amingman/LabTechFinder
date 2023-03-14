@@ -1,6 +1,5 @@
 const bcrypt = require(`bcrypt`);
-const {Pool} = require (`pg`) // Not pool because we only use once
-
+const {Pool} = require (`pg`)
 const db = new Pool({
     database: `labtechfinder`
 })

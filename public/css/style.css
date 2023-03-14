@@ -1,0 +1,80 @@
+@font-face {
+    font-family: roboto-medium;
+    src: url(../fonts/Roboto-Medium.ttf);
+}
+
+*{
+    /* border: 1px solid red; */
+    font-family: roboto-medium;
+}
+
+body {
+    /* background-color: blue; */
+    padding: 0;
+    margin: 0;
+}
+
+
+header {
+    background-color: #4d75a4;
+    height: 150px;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    justify-content: space-between;
+    padding: 0;
+    /* margin: auto; */
+    /* border-bottom: 3px solid black; */
+}
+
+header img {
+    height: 150px;
+    margin: auto;
+    /* padding: 10px; */
+}
+
+header div {
+    /* margin-right: 0;     */
+    /* margin: auto; */
+    display: grid;
+    align-content: center;
+    justify-content: end;
+    /* text-align: right; */
+    gap: 1em;
+}
+
+header button {
+    /* height: 70%; */
+    align-content: end;
+    justify-content: end;
+    margin-right: 1em;
+    font-size: 1em;
+    aspect-ratio: 5/3;
+    border-radius: 10px;
+}
+
+
+
+
+main {
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-top: 2vw;
+    /* padding-right: 5vw; */
+}
+
+
+
+
+
+@media screen and (max-width: 400px) {
+    header {
+        height: 100px;
+    }
+    header img {
+        height: 100px;
+    }
+    
+    header button {
+        font-size: 0.7em;
+    }
+}
