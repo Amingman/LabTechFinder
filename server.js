@@ -76,32 +76,35 @@ app.use(middlewares.viewHelpers)
 
 
 
-// let acceptedSource = [`technews`, `nasa`, `sciencealert`, `theguardian`]
-// let top5News = []
-// axios.request(options).then(function (response) {
-//     let counter = 0
-//     for (i = 0; counter < 5; i++) {
-//         news = response.data.results[i]
-//         if (acceptedSource.includes(news.source_id)) {
-//             top5News.push(news)
-//             console.log(`got one`);
-//             counter++
-//         }
-//         if (i == response.data.results.length - 1) {
-//             break
-//         }
-//     }
-//     console.log(top5News);
-// }).catch(function (error) {
-// 	console.error(error);
-// });
+
 
 
 
 
 
 app.get(`/`, (req, res) => {
-    res.render(`home`)
+    let acceptedSource = [`technews`, `nasa`, `sciencealert`, `theguardian`]
+    let top5News = []
+    axios.request(options).then(function (response) {
+        let counter = 0
+        for (i = 0; counter < 5; i++) {
+            news = response.data.results[i]
+            if (acceptedSource.includes(news.source_id)) {
+                top5News.push(news)
+                console.log(`got one`);
+                counter++
+            }
+            if (i == response.data.results.length - 1) {
+                break
+            }
+        }
+        res.render(`home`, {top5News})
+
+        // console.log(top5News);
+    }).catch(function (error) {
+        console.error(error);
+    });
+
 })
 
 

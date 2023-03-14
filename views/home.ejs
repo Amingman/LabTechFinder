@@ -1,17 +1,20 @@
-<!-- <section> -->
-    <!-- <img src="../images/doesnotexist/female1.webp" alt=""> -->
+<!-- <img src="../images/doesnotexist/female1.webp" alt=""> -->
 <h1 class="welcome">Welcome to Lab Tech Finder</h1>
-<h2 class="news" style="font-size: 1.7em;">Latest News</h2>
-<section class="news-card">
-    <h2 class="news-title">Remains of Roman aristocrat unearthed in ‘extraordinary’ cemetery near Leeds</h2>
-    <h3 class='source'>theguardian (2023-03-13)</h3>
-    <p class="author">By: Josh Halliday North of England correspondent</p>
-    <div class="news-image-wrapper">
-        <img src="https://i.guim.co.uk/img/media/f3560a4610aafbc4682060ff49430a2c5a369d26/0_238_961_576/master/961.jpg?width=460&quality=85&auto=format&fit=max&s=a45e176864620de36a223a1af08928f5" alt="">
-    </div>
-    <article>Archaeologists hail ‘once in a lifetime’ discovery of Roman and Saxon site dating back 1,600 yearsSkeletal remains of a Roman aristocrat have been unearthed in a “truly extraordinary” hidden cemetery dating back 1,600 years.Bones belonging to the high-status woman were discovered in an ancient lead coffin during a dig in the town of Garforth, near Leeds.</article>
-    <a class="continue" href="https://www.theguardian.com/uk-news/2023/mar/13/remains-roman-aristocrat-extraordinary-cemetery-leeds">Continue reading...</a>
-</section>
+<h2 class="news" style="font-size: 1.7em;">Latest News in Australia</h2>
 
-<!-- </section> -->
 
+<% top5News.forEach(news => { %>
+    <section class="news-card">
+        <h2 class="news-title"><%= news.title %></h2>
+        <h3 class='source'><%= news.source_id %> &nbsp; (<%= news.pubDate.split(' ')[0] %>)</h3>
+        <p class="author">By: <%= news.creator[0] %></p>
+        <div class="news-image-wrapper">
+            <img src="<%= news.image_url %>" alt="">
+        </div>
+        <article><%= news.description.split('Continue reading...')[0] %></article>
+        <a class="continue" href="<%= news.link %>">Continue reading...</a>
+
+    </section>
+    
+
+<% }); %>
