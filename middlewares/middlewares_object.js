@@ -17,7 +17,8 @@ const method_override = methodOverride((req, res) => {
 })
 
 function logger(req, res, next) {
-    console.log(`${req.method} ${req.url} ${new Date()}`);
+    console.log(`${req.method} ${req.url} ${String(new Date()).split(` (`)[0]
+}`);
     next()
 }
 
@@ -60,9 +61,10 @@ function setCurrentUser(req, res, next) {
 
 }
 
-
-
-
+function ensureLoggedIn(req, res, next) {
+    if (req.session.userID) return next()
+    res.redirect("/login")
+}
 
 
 
@@ -72,7 +74,8 @@ expressMiddlewares = {
     method_override,
     logger,
     viewHelpers,
-    setCurrentUser
+    setCurrentUser,
+    ensureLoggedIn
 }
 
 

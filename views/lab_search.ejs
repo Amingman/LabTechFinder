@@ -1,0 +1,25 @@
+<h1 class="welcome">Find a lab</h1>
+
+<h2 style="margin-bottom: 1em;">Basic Search</h2>
+<!-- <article>Leave blank if not sure</article> -->
+<h3><a href="/lab/lab_search">Browse all</a></h3>
+
+<p class="search-box">OR</p>
+
+<form action="/lab/lab_search/byname" method="post">
+    <h3>Search by lab name</h3>
+    <input  class="search-box" type="text" name="name" placeholder="e.g. Cancer" value="" required="required"><button class="search-button"><i class="fa-solid fa-magnifying-glass icon-colour"></i></button>
+</form>
+
+<p class="search-box">OR</p>
+
+<form action="/lab/lab_search/bypi" method="post">
+    <h3>Search by PI</h3>
+    <input  class="search-box" type="text" name="pi" placeholder="e.g. Bell" value="" required="required"><button class="search-button"><i class="fa-solid fa-magnifying-glass icon-colour"></i></button>
+</form>
+
+
+<!-- <form action="/users" class="form" style="padding: 10px;" method="post">
+    <p>Planet Name (Standard British English)</p>
+    <input type="text" name="name" required="required" style="width: 90%;">
+</form> -->

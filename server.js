@@ -4,16 +4,10 @@ const express = require("express")
 const expressLayouts = require('express-ejs-layouts')
 const session = require(`express-session`)
 const MemoryStore = require('memorystore')(session)
+const middlewares = require(`./middlewares/middlewares_object`)
 const axios = require("axios");
-// const options = {
-//     method: 'GET',
-//     url: 'https://ny-times-news-titles-and-urls.p.rapidapi.com/news',
-//     headers: {
-//       'X-RapidAPI-Key': '205e605d9bmsh0126ab975efa369p1e6b1cjsn4047847b6823',
-//       'X-RapidAPI-Host': 'ny-times-news-titles-and-urls.p.rapidapi.com'
-//     }
-// };
 
+// News API
 const options = {
     method: 'GET',
     url: 'https://newsdata.io/api/1/news?apikey=pub_18880686ef76f718468c45fffd56a1c37e408&country=au&language=en&category=science',
@@ -24,33 +18,20 @@ const options = {
     // }
   };
 
+// // Controllers
+// const labController = require(`./controllers/lab_controller`)
+// console.log(labController);
+
 
 
 const app = express()
 const port = process.env.PORT || 3000
-const db = require(`./db`)
-
-const middlewares = require(`./middlewares/middlewares_object`)
-
-// const {Pool} = require(`pg`)
-// const db = new Pool({
-//     database: `labtechfinder`,
-// })
-
 
 app.set(`view engine`, `ejs`)
 
+// Layouts. Layout is in /views/layout.ejs
 app.use(expressLayouts)
 app.set("layout example", false);
-// app.use(session({
-//     secret: process.env.SESSION_SECRET || `keyboard cat`,
-//     resave: false,
-//     saveUninitialized: true
-// }))
-
-
-
-
 
 app.use(session({
     cookie: { maxAge: 86400000 },
@@ -60,8 +41,6 @@ app.use(session({
     resave: false,
     secret: process.env.SESSION_SECRET || 'keyboard cat'
 }))
-
-
 
 
 
@@ -79,10 +58,7 @@ app.use(middlewares.viewHelpers)
 
 
 
-
-
-
-app.get(`/`, (req, res) => {
+app.get([`/`, `/home`], (req, res) => {
     let acceptedSource = [`technews`, `nasa`, `sciencealert`, `theguardian`]
     let top5News = []
     axios.request(options).then(function (response) {
@@ -99,11 +75,132 @@ app.get(`/`, (req, res) => {
             }
         }
         res.render(`home`, {top5News})
-
-        // console.log(top5News);
     }).catch(function (error) {
         console.error(error);
     });
+
+})
+
+// app.use(`/lab`, labController) // router for laboratories
+
+
+const db = require(`./db`)
+db.connect()
+
+
+app.get(`/lab`, (req, res) => {
+// router.get(`/`, (req, res) => {
+    // const sql = `SELECT * FROM laboratories WHERE labid > 1;`
+    // db.query(sql, (err, dbRes) => {
+    //     let data = {}
+    //     data.title = 'Laboratories'
+    //     data.label = 'lab'
+    //     data.entries = dbRes.rows
+    res.render(`lab_search`)
+    // })
+})
+
+app.get(`/lab/lab_search`, (req, res) => {
+    const sql = `SELECT * FROM laboratories WHERE labid > 1;`
+
+    db.query(sql, (err, dbRes) => {
+        if (err) {
+            console.log(err);
+        }
+        let data = {}
+        data.title = 'Laboratories'
+        data.label = 'lab'
+        data.entries = dbRes.rows
+        res.render(`search`, {data})
+    })
+
+})
+
+app.post(`/lab/lab_search/byname`, (req, res) => {
+    let name = req.body.name
+    let names = name.split(` `)
+    let stringName  = []
+    names.forEach(name => {
+        // stringName.push(`%${name.toLowerCase()}%`)
+        stringName.push(`'%${name.toLowerCase()}%'`) //sql2
+    });
+    stringName = stringName.join(` OR LOWER(name) LIKE `)
+    
+    const sql = `SELECT * FROM laboratories WHERE LOWER(name) LIKE $1;`
+    const sql2 = `SELECT * FROM laboratories WHERE LOWER(name) LIKE ${stringName};`
+
+
+    console.log(sql2);
+    // db.query(sql, [stringName], (err, dbRes) => {
+    db.query(sql2, (err, dbRes) => {
+        if (err) {
+            console.log(err);
+        }
+        let data = {}
+        data.title = 'Laboratories'
+        data.label = 'lab'
+        data.entries = dbRes.rows
+        res.render(`search`, {data})
+    })
+})
+
+
+app.post(`/lab/lab_search/bypi`, (req, res) => {
+    let name = req.body.pi
+    let names = name.split(` `)
+    let stringName  = []
+    names.forEach(name => {
+        // stringName.push(`%${name.toLowerCase()}%`) 
+        stringName.push(`'%${name.toLowerCase()}%'`) //sql2
+    });
+    stringName = stringName.join(` AND role ='PI' OR LOWER(name) LIKE `)
+    
+    let sql = `SELECT labid FROM users WHERE LOWER(name) LIKE $1 AND role ='PI';`
+    let sql2 = `SELECT labid FROM users WHERE LOWER(name) LIKE ${stringName} AND role ='PI';`
+
+    console.log(`here`);
+    // console.log(sql2);
+    // db.query(sql, [stringName], (err, dbRes) => {
+    db.query(sql2, (err, dbRes) => {
+        if (err) {
+            console.log(err);
+        }
+        // console.log(dbRes);
+        let ids = dbRes.rows
+        let stringId = []
+        ids.forEach(id => {
+            stringId.push(id.labid)
+        })
+        // console.log(stringId);
+        stringId = stringId.join(` OR labid = `)
+
+        console.log(stringId);
+        sql = `SELECT * FROM laboratories WHERE labid = $1`
+        sql2 = `SELECT * FROM laboratories WHERE labid = ${stringId}`
+        // db.query(sql, [stringId], (err, dbRes2) => {
+        db.query(sql2, (err, dbRes2) => {
+            if (err) {
+                console.log(err);
+            }
+            let data = {}
+
+            data.title = 'Laboratories'
+            data.label = 'lab'
+            data.entries = dbRes2.rows
+            // console.log(`here`);
+            // console.log(data.entries);
+            res.render(`search`, {data})
+        })
+
+        // let data = {}
+
+        // data.title = 'Laboratories'
+        // data.label = 'lab'
+        // data.entries = dbRes.rows
+        // // console.log(`here`);
+        // // console.log(data.entries);
+        // res.render(`search`, {data})
+    })
 
 })
 
@@ -118,28 +215,11 @@ app.get(`/`, (req, res) => {
 
 
 
-app.use(express.static("public"))
-
-app.set(`view engine`, `ejs`)
 
 
 
 
 
-
-
-// app.get([`/`, `/home`], (req, res) => {
-//     const sql = `SELECT * FROM planets`
-
-//     db.query(sql, (err, dbRes) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             // res.send(dbRes.rows)
-//             res.render(`index`, {dbRes:dbRes.rows})
-//         }
-//     })
-// })
 
 
 
