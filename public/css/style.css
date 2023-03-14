@@ -96,6 +96,7 @@ li:hover {
 .content {
     padding: 10px;
     text-align: left;
+    padding-left: 2vw;
     /* display: grid; */
     /* margin: 0; */
     /* margin-left: 200px; */
@@ -112,6 +113,74 @@ li:hover {
     padding: 10px;
     border: 2px solid steelblue;
     border-radius: 10px;
+}
+
+.news-title {
+    /* background-color: #4d76a4ba; */
+    border-radius: 10px;
+    padding: 10px;
+    /* margin-bottom: 10px; */
+}
+
+.source {
+    padding: 10px;
+    padding-bottom: 0px;
+    font-weight: normal;
+
+}
+
+.author {
+    padding: 10px;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.news-image-wrapper {
+    display: grid;
+    overflow: hidden;
+}
+
+.news-image-wrapper img {
+    display: grid;
+    position: relative;
+    /* top:-25%; */
+    width: 100%;
+    overflow: hidden;
+    grid-gap:0px;
+    object-fit: cover;
+    height: 100%;
+    padding: 10px;
+    z-index: -1;
+}
+
+article {
+    padding: 10px;
+}
+
+.continue {
+    display: grid;
+    padding: 10px;
+    text-align: right;
+}
+
+
+
+footer {
+    /* position: fixed;
+    top: 0px; */
+    background-color: #4d75a4;
+    width: 100vw;
+    /* height: 1em; */
+    display: grid;
+    align-items: center;
+    padding-left: 2vw;
+    color: white;
+    /* grid-template-columns: min-content 1fr; */
+    /* justify-content: space-between; */
+    /* padding: 0; */
+    /* margin: auto; */
+    /* border-bottom: 3px solid black; */
 }
 
 @media screen and (max-width: 400px) {
