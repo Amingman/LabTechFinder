@@ -414,6 +414,12 @@ article {
     display: grid;
 }
 
+.register {
+    display: grid;
+    justify-content: start;
+    text-align: left;
+}
+
 .delete {
     display: grid;
     justify-content: center;
@@ -423,9 +429,6 @@ article {
 .delete div {
     display: flex;
 }
-/* .delete span {
-    display: flex;
-} */
 
 @media screen and (max-width: 500px) {
     header {

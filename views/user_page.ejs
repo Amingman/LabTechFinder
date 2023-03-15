@@ -25,13 +25,15 @@
 
 <section class="career-info">
     <h3 class="title">Skills</h3>
-    <article>
-        <% data.skillData.forEach((skill, index) => { %>
-            <% if (index == data.skillData.length - 1) { %>
-                <%= skill.skill %>.
-            <% } else { %>
-                <%= skill.skill %>,
-            <% } %> 
-    <% }) %>
+    <% if (data.skillData) { %>
+        <article>
+            <% data.skillData.forEach((skill, index) => { %>
+                <% if (index == data.skillData.length - 1) { %>
+                    <%= skill.skill %>.
+                <% } else { %>
+                    <%= skill.skill %>,
+                <% } %> 
+        <% }) %>     
+    <% } %>
     </article>
 </section>

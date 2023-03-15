@@ -1,5 +1,7 @@
 const express = require(`express`)
 const router = express.Router()
+const bcrypt = require(`bcrypt`);
+
 
 const db = require(`../db`)
 db.connect()
@@ -142,13 +144,77 @@ router.get(`/:userid`, (req,res) => {
             // res.send(data)
             res.render(`user_page`, {data})
         })
-    
     })
+})
+
+router.post(`/new`, (req, res) => {
+    const labid = req.body.labid
+    const labName = req.body.labName
+    const labEmail = req.body.labEmail
+    // res.send(`${labid} ${labName}`)
+    let alert = ''
+    res.render(`user_add`, {labid, labName, labEmail, alert})
+})
+
+
+router.post(`/`, (req, res) => {
+    const labid = req.body.labid
+    const labName = req.body.labName
+    const labEmail = req.body.labEmail
+    const userName = req.body.userName
+    const fullRole = req.body.role.split(`,`)
+    const role = fullRole[1]
+    const userEmail = req.body.userEmail
+    const tempPassword = req.body.tempPass
+    const photo = req.body.userImage
+    const accesslevel = fullRole[0]
+    const confirm = req.body.confirm
+
+
+    if (tempPassword != confirm) {
+        res.render(`user_add`, {labid, labName, alert:`Password does not match.`})
+    } else {
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(tempPassword, salt, (err, digestedPass) => {
+
+                const sqlUser = `INSERT INTO users (labid, name, role, email, digpassword, photo, accesslevel) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING userid;`
+
+                let userInsert = [labid, userName, role, userEmail, digestedPass, photo, accesslevel]
+
+                db.query(sqlUser, userInsert, (err, dbResUser) => {
+                    // console.log(dbResUser)
+                    // console.log(dbResUser.rows[0])
+
+                    let userid = dbResUser.rows[0].userid
+
+                    console.log(`User Id = ${userid}`)
+
+                    let data = {
+                        userData: [{
+                            name:userName,
+                            photo:photo,
+                            userid:userid,
+                            role:role,
+                            email:userEmail
+                        }],
+                        labData: {
+                            email:labEmail,
+                            name:labName
+                        }
+                    }
+                    res.render(`user_page`, {data})
+                })
+            })
+        }) 
 
 
 
+        // res.send(`${labid} ${userName} ${role} ${userEmail} ${tempPassword} ${photo} ${accesslevel} ${labName}`)
+    }
 
 })
+
+
 
 
 

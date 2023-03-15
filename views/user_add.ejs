@@ -1,0 +1,44 @@
+<h1 class="welcome">Register User</h1>
+
+
+<form action="/user" class="form" style="padding: 10px;" method="post" id="register">
+    <h3 style="margin-top: 1em;">Lab: <%= labName %></h3>
+    <input type="hidden" name="labid" value="<%= labid %>">
+    <input type="hidden" name="labName" value="<%= labName %>">
+    <input type="hidden" name="labEmail" value="<%= labEmail %>">
+    <section class="metrics">
+        <div>
+            <p>Name</p>
+            <input type="text" name="userName" required="required" placeholder="e.g. Jane Doe">
+        </div>
+        <div>
+            <p>Email address</p>
+            <input type="email" name="userEmail" required="required" placeholder="e.g. janedoe@sciency.com">
+        </div>
+        <div>
+            <p>Role</p>
+            <select name="role" id="" form="register" required>
+                <option value="3,Postdoc Fellow">Postdoc Fellow</option>
+                <option value="2,Manager">Manager</option>
+                <option value="3,Biostatistician">Biostatistician</option>
+                <option value="3,Animal Model Technician">Animal Model Technician</option>
+                <option value="3,Research Officer">Research Officer</option>
+                <option value="3,Lab Tech">Lab Tech</option>
+            </select>
+        </div>
+        <div>
+            <p>Headshot photo url</p>
+            <input type="text" name="userImage" required="required" placeholder="e.g. ../images/doesnotexist/female6.jpeg">
+        </div>
+        <div>
+            <p>Temporary Password</p>
+            <input id="pass1" type="password" name="tempPass" required="required" placeholder="e.g. janedoetemp">
+        </div>
+        <div>
+            <p>Confirm password</p>
+            <input id="pass2" type="password" name="confirm" required="required" placeholder="e.g. janedoetemp">
+        </div>
+    </section>
+    <button id="lab_submit" class="button">Submit</button>
+    <p style="color: red;"><%= alert %></p>
+</form>
