@@ -1,39 +1,30 @@
 const express = require(`express`)
-// const router = express.Router()
 const router = express.Router()
-
-// const {ensureLoggedIn} = require(`../middlewares/middlewares_object`)
 
 const db = require(`../db`)
 db.connect()
 
-
-// router.get(`/`, (req, res) => {
-
-//     res.render(`lab_search`)
-// })
-
 router.get(`/`, (req, res) => {
-    res.render(`lab_search`)
+    res.render(`user_search`)
 })
 
-router.get(`/lab_search`, (req, res) => {
-    const sql = `SELECT * FROM laboratories WHERE labid > 1;`
+router.get(`/user_search`, (req, res) => {
+    const sql = `SELECT * FROM users;`
 
     db.query(sql, (err, dbRes) => {
         if (err) {
             console.log(err);
         }
         let data = {}
-        data.title = 'Laboratories'
-        data.label = 'lab'
+        data.title = 'Researchers'
+        data.label = 'user'
         data.entries = dbRes.rows
         res.render(`search`, {data})
     })
 
 })
 
-router.post(`/lab_search/byname`, (req, res) => {
+router.post(`/user_search/byname`, (req, res) => {
     let name = req.body.name
     let names = name.split(` `)
     let stringName  = [] // The search terms as array
@@ -42,7 +33,7 @@ router.post(`/lab_search/byname`, (req, res) => {
     });
 
     // Dynamic string query sanitisation setup
-    let sql = `SELECT * FROM laboratories WHERE LOWER(name) LIKE `
+    let sql = `SELECT * FROM users WHERE LOWER(name) LIKE `
     for (let i = 0; i < stringName.length; i++) {
         sql = `${sql} $${i+1}`
         if (i < stringName.length - 1) {
@@ -56,8 +47,8 @@ router.post(`/lab_search/byname`, (req, res) => {
             console.log(err);
         }
         let data = {}
-        data.title = 'Laboratories'
-        data.label = 'lab'
+        data.title = 'Researchers'
+        data.label = 'user'
         data.entries = dbRes.rows
         res.render(`search`, {data})
     })
@@ -65,8 +56,8 @@ router.post(`/lab_search/byname`, (req, res) => {
 
 
 
-router.post(`/lab_search/bypi`, (req, res) => {
-    let name = req.body.pi
+router.post(`/user_search/bylab`, (req, res) => {
+    let name = req.body.lab
     let names = name.split(` `)
     let stringName  = []
     names.forEach(name => {
@@ -74,11 +65,11 @@ router.post(`/lab_search/bypi`, (req, res) => {
     });
 
     // Dynamic string query sanitisation setup
-    let sql = `SELECT labid FROM users WHERE role ='PI' AND LOWER(name) LIKE `
+    let sql = `SELECT labid FROM laboratories WHERE LOWER(name) LIKE`
     for (let i = 0; i < stringName.length; i++) {
         sql = `${sql} $${i+1}`
         if (i < stringName.length - 1) {
-            sql = `${sql} OR role ='PI' AND LOWER(name) LIKE `
+            sql = `${sql} OR LOWER(name) LIKE`
         }
     }    
     sql = `${sql};`
@@ -92,9 +83,8 @@ router.post(`/lab_search/bypi`, (req, res) => {
         ids.forEach(id => {
             stringId.push(id.labid)
         })
-
         // Dynamic string query sanitisation setup
-        sql = `SELECT * FROM laboratories WHERE labid =`
+        sql = `SELECT * FROM users WHERE labid =`
         for (let i = 0; i < stringId.length; i++) {
             sql = `${sql} $${i+1}`
             if (i < stringId.length - 1) {
@@ -109,8 +99,8 @@ router.post(`/lab_search/bypi`, (req, res) => {
             }
             let data = {}
 
-            data.title = 'Laboratories'
-            data.label = 'lab'
+            data.title = 'Researchers'
+            data.label = 'user'
             data.entries = dbRes2.rows
             res.render(`search`, {data})
         })
@@ -118,28 +108,21 @@ router.post(`/lab_search/bypi`, (req, res) => {
 
 })
 
-router.get(`/:labid`, (req,res) => {
-    const labid = req.params.labid
-    const sql = `SELECT * FROM laboratories WHERE labid = $1;`
+router.get(`/:userid`, (req,res) => {
+    const userid = req.params.userid
+    const sql = `SELECT * FROM users WHERE userid = $1;`
 
     let data = {}
 
-    db.query(sql, [labid], (err, dbRes) => {
+    db.query(sql, [userid], (err, dbRes) => {
         if (err) {
             console.log(err);
         }
-        data.labData = dbRes.rows[0]
-        const sql2 = `SELECT * FROM users WHERE labid = $1 ORDER BY accesslevel ASC;`
-
-        db.query(sql2, [labid], (err, dbRes2) => {
-            if (err) {
-                console.log(err);
-            }
-            data.userData = dbRes2.rows
-            // res.send({data})
-            res.render(`lab_page`, {data})
-        })
+        data.userData = dbRes.rows[0]
+        res.render(`user_page]`, {data})
     })
 })
+
+
 
 module.exports = router

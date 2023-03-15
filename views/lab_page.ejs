@@ -5,16 +5,13 @@
         <div class="flip-inner">
             <div class="flip-front">
                 <img class="pi-photo" src="<%=  data.userData[0].photo %>" alt="">
-                <h3 class="pi-name"><%= data.userData[0].name %></h3>
+                <h3 class="big-name"><%= data.userData[0].name %></h3>
             </div>
             <div class="flip-back">
-                <!-- <div> -->
-                <h3><%= data.userData[0].role %></h3>
-                <!-- <h1>John Doe</h1> -->
-                <!-- <p>Architect & Engineer</p> -->
-                <p>We love that guy</p>
-                <!-- </div> -->
-                <h3 class="pi-name"><%= data.userData[0].name %></h3>
+                <a href="/user/<%= data.userData[0].userid %>">
+                    <h3 class="big-name"><%= data.userData[0].role %></h3>
+                    <p class="lab-desc"><%= data.userData[0].email %></p>
+                </a>
             </div>
         </div>
     </span>
@@ -42,9 +39,11 @@
                             <h3 class="member-name"><%= member.name %></h3>
                         </div>
                         <div class="flip-back">
-                            <h3><%= data.userData[0].role %></h3>
-                            <p>We love that guy</p>
-                            <h3 class="pi-name"><%= data.userData[0].name %></h3>
+                            <a href="/user/<%= member.userid %>">
+                                <h3 class="big-name"><%= member.role %></h3>
+                                <p class="card-email"><%= member.email %></p>
+                            </a>
+            
                         </div>
                     </div>
                 </div>

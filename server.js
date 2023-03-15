@@ -8,19 +8,23 @@ const middlewares = require(`./middlewares/middlewares_object`)
 const axios = require("axios");
 
 // News API
-const options = {
-    method: 'GET',
-    url: 'https://newsdata.io/api/1/news?apikey=pub_18880686ef76f718468c45fffd56a1c37e408&country=au&language=en&category=science',
-    // params: {id: 'country-us', numberOfRow: '5', pageNumber: '1', sortBy: 'hot'},
-    // headers: {
-    //   'X-RapidAPI-Key': '205e605d9bmsh0126ab975efa369p1e6b1cjsn4047847b6823',
-    //   'X-RapidAPI-Host': 'hot-breaking-news-latest-news.p.rapidapi.com'
-    // }
-  };
+// const options = {
+//     method: 'GET',
+//     url: 'https://newsdata.io/api/1/news?apikey=pub_18880686ef76f718468c45fffd56a1c37e408&country=au&language=en&category=science&page',
+//     // params: {id: 'country-us', numberOfRow: '5', pageNumber: '1', sortBy: 'hot'},
+//     // headers: {
+//     //   'X-RapidAPI-Key': '205e605d9bmsh0126ab975efa369p1e6b1cjsn4047847b6823',
+//     //   'X-RapidAPI-Host': 'hot-breaking-news-latest-news.p.rapidapi.com'
+//     // }
+//   };
 
-// // Controllers
-// const labController = require(`./controllers/lab_controller`)
-// console.log(labController);
+
+
+
+// Controllers
+const labController = require(`./controllers/lab_controller`)
+const userController = require(`./controllers/user_controller`)
+console.log(labController);
 
 
 
@@ -59,21 +63,25 @@ app.use(middlewares.viewHelpers)
 
 
 app.get([`/`, `/home`], (req, res) => {
-    let acceptedSource = [`technews`, `nasa`, `sciencealert`, `theguardian`]
+    let acceptedSource = [`technews`, `nasa`, `sciencealert`, `theguardian`, `gizmodo`]
     let top5News = []
-    axios.request(options).then(function (response) {
+    let url = 'https://newsdata.io/api/1/news?apikey=pub_18880686ef76f718468c45fffd56a1c37e408&country=au&language=en&category=science&page'
+    
+    axios.request(url).then(function (response) {
         let counter = 0
         for (i = 0; counter < 5; i++) {
             news = response.data.results[i]
             if (acceptedSource.includes(news.source_id)) {
                 top5News.push(news)
-                console.log(`got one`);
+                // console.log(`got one`);
                 counter++
             }
+            // console.log(news.source_id);
             if (i == response.data.results.length - 1) {
                 break
             }
         }
+        // res.send({top5News})
         res.render(`home`, {top5News})
     }).catch(function (error) {
         console.error(error);
@@ -81,153 +89,37 @@ app.get([`/`, `/home`], (req, res) => {
 
 })
 
-// app.use(`/lab`, labController) // router for laboratories
+
+app.use(`/lab`, labController) // router for laboratories
+app.use(`/user`, userController) // router for users
 
 
 const db = require(`./db`)
 db.connect()
 
 
-app.get(`/lab`, (req, res) => {
-// router.get(`/`, (req, res) => {
-    // const sql = `SELECT * FROM laboratories WHERE labid > 1;`
-    // db.query(sql, (err, dbRes) => {
-    //     let data = {}
-    //     data.title = 'Laboratories'
-    //     data.label = 'lab'
-    //     data.entries = dbRes.rows
-    res.render(`lab_search`)
-    // })
-})
-
-app.get(`/lab/lab_search`, (req, res) => {
-    const sql = `SELECT * FROM laboratories WHERE labid > 1;`
-
-    db.query(sql, (err, dbRes) => {
-        if (err) {
-            console.log(err);
-        }
-        let data = {}
-        data.title = 'Laboratories'
-        data.label = 'lab'
-        data.entries = dbRes.rows
-        res.render(`search`, {data})
-    })
-
-})
-
-app.post(`/lab/lab_search/byname`, (req, res) => {
-    let name = req.body.name
-    let names = name.split(` `)
-    let stringName  = []
-    names.forEach(name => {
-        // stringName.push(`%${name.toLowerCase()}%`)
-        stringName.push(`'%${name.toLowerCase()}%'`) //sql2
-    });
-    stringName = stringName.join(` OR LOWER(name) LIKE `)
-    
-    const sql = `SELECT * FROM laboratories WHERE LOWER(name) LIKE $1;`
-    const sql2 = `SELECT * FROM laboratories WHERE LOWER(name) LIKE ${stringName};`
 
 
-    console.log(sql2);
-    // db.query(sql, [stringName], (err, dbRes) => {
-    db.query(sql2, (err, dbRes) => {
-        if (err) {
-            console.log(err);
-        }
-        let data = {}
-        data.title = 'Laboratories'
-        data.label = 'lab'
-        data.entries = dbRes.rows
-        res.render(`search`, {data})
-    })
-})
+// app.get(`/lab/lab_search`, (req, res) => {
+//     const sql = `SELECT * FROM laboratories WHERE labid > 1;`
+
+//     db.query(sql, (err, dbRes) => {
+//         if (err) {
+//             console.log(err);
+//         }
+//         let data = {}
+//         data.title = 'Laboratories'
+//         data.label = 'lab'
+//         data.entries = dbRes.rows
+//         res.render(`search`, {data})
+//     })
+
+// })
 
 
-app.post(`/lab/lab_search/bypi`, (req, res) => {
-    let name = req.body.pi
-    let names = name.split(` `)
-    let stringName  = []
-    names.forEach(name => {
-        // stringName.push(`%${name.toLowerCase()}%`) 
-        stringName.push(`'%${name.toLowerCase()}%'`) //sql2
-    });
-    stringName = stringName.join(` AND role ='PI' OR LOWER(name) LIKE `)
-    
-    let sql = `SELECT labid FROM users WHERE LOWER(name) LIKE $1 AND role ='PI';`
-    let sql2 = `SELECT labid FROM users WHERE LOWER(name) LIKE ${stringName} AND role ='PI';`
-
-    console.log(`here`);
-    // console.log(sql2);
-    // db.query(sql, [stringName], (err, dbRes) => {
-    db.query(sql2, (err, dbRes) => {
-        if (err) {
-            console.log(err);
-        }
-        // console.log(dbRes);
-        let ids = dbRes.rows
-        let stringId = []
-        ids.forEach(id => {
-            stringId.push(id.labid)
-        })
-        // console.log(stringId);
-        stringId = stringId.join(` OR labid = `)
-
-        console.log(stringId);
-        sql = `SELECT * FROM laboratories WHERE labid = $1`
-        sql2 = `SELECT * FROM laboratories WHERE labid = ${stringId}`
-        // db.query(sql, [stringId], (err, dbRes2) => {
-        db.query(sql2, (err, dbRes2) => {
-            if (err) {
-                console.log(err);
-            }
-            let data = {}
-
-            data.title = 'Laboratories'
-            data.label = 'lab'
-            data.entries = dbRes2.rows
-            // console.log(`here`);
-            // console.log(data.entries);
-            res.render(`search`, {data})
-        })
-
-        // let data = {}
-
-        // data.title = 'Laboratories'
-        // data.label = 'lab'
-        // data.entries = dbRes.rows
-        // // console.log(`here`);
-        // // console.log(data.entries);
-        // res.render(`search`, {data})
-    })
-
-})
 
 
-app.get(`/lab/:labid`, (req,res) => {
-    const labid = req.params.labid
-    const sql = `SELECT * FROM laboratories WHERE labid = $1;`
 
-    let data = {}
-
-    db.query(sql, [labid], (err, dbRes) => {
-        if (err) {
-            console.log(err);
-        }
-        data.labData = dbRes.rows[0]
-        const sql2 = `SELECT * FROM users WHERE labid = $1 ORDER BY accesslevel ASC;`
-
-        db.query(sql2, [labid], (err, dbRes2) => {
-            if (err) {
-                console.log(err);
-            }
-            data.userData = dbRes2.rows
-            // res.send({data})
-            res.render(`lab_page`, {data})
-        })
-    })
-})
 
 
 

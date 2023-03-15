@@ -1,0 +1,19 @@
+<h1 class="welcome">Find a Scientist</h1>
+
+<h2 style="margin-bottom: 1em;">Basic Search</h2>
+<!-- <article>Leave blank if not sure</article> -->
+<h3><a href="/user/user_search">Browse all</a></h3>
+
+<p class="search-box">OR</p>
+
+<form action="/user/user_search/byname" method="post">
+    <h3>Search by name</h3>
+    <input  class="search-box" type="text" name="name" placeholder="e.g. Ana" value="" required="required"><button class="search-button"><i class="fa-solid fa-magnifying-glass icon-colour"></i></button>
+</form>
+
+<p class="search-box">OR</p>
+
+<form action="/user/user_search/bylab" method="post">
+    <h3>Search by Lab</h3>
+    <input  class="search-box" type="text" name="lab" placeholder="e.g. Genomics" value="" required="required"><button class="search-button"><i class="fa-solid fa-magnifying-glass icon-colour"></i></button>
+</form>

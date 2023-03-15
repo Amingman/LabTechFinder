@@ -1,7 +1,13 @@
 <h1 class="welcome"><%= data.entries.length %> <%= data.title %> Found</h1>
 <!-- <h2 class="news" style="font-size: 1.7em;">Latest News in Australia</h2> -->
 <ol>
-    <% data.entries.forEach(entry => { %>
-        <li class="search-entry"><a href="/<%= data.label %>/<%= entry.labid %>"><%= entry.name %></a></li>
-    <% }); %>
+    <% if (data.label == `lab`) { %>
+        <% data.entries.forEach(entry => { %>
+            <li class="search-entry"><a href="/<%= data.label %>/<%= entry.labid %>"><%= entry.name %></a></li>
+        <% }); %>   
+    <% } else { %>
+        <% data.entries.forEach(entry => { %>
+            <li class="search-entry"><a href="/<%= data.label %>/<%= entry.userid %>"><%= entry.name %></a></li>
+        <% }); %>   
+    <% } %>
 </ol>
