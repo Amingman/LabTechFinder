@@ -37,3 +37,22 @@
     <% } %>
     </article>
 </section>
+
+
+
+
+<form action="/user/edit/<%= data.userData.userid %>" style="margin-top: 1em;" class="register">
+    <button class="button">Update</button>
+</form>
+
+
+
+
+<form action="/user" method="post" style="margin-top: 5em;" class="delete">
+    <input type="hidden" name="_method" value="DELETE">
+    <p style="color: red;">WARNING: This action cannot be reveresed</p>
+    <div>
+        <input type="checkbox" required><span style="color: red;">I understand</span>
+    </div>
+    <button class="button" type="hidden" name="userid" value="<%= data.userData.userid %>" style="background-color: red;">Delete</button>
+</form>

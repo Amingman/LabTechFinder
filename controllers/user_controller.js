@@ -206,15 +206,68 @@ router.post(`/`, (req, res) => {
                 })
             })
         }) 
-
-
-
-        // res.send(`${labid} ${userName} ${role} ${userEmail} ${tempPassword} ${photo} ${accesslevel} ${labName}`)
     }
+})
 
+router.delete(`/`, (req, res) => {
+    const userid = req.body.userid
+    console.log(userid);
+    
+    const sqlUser = `DELETE FROM users WHERE userid = $1;`
+    db.query(sqlUser, [userid], (err, dbRes) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect(`/`)
+        }
+    })
+})
+
+// Edit user form
+router.get(`/edit/:userid`, (req, res) => {
+    const userid = req.params.userid
+    const sqlUser = `SELECT * FROM users WHERE userid = $1;`
+    let data = {}
+
+
+    db.query(sqlUser, [userid], (err, dbResUser) => {
+        if (err) {
+            console.log(`User`);
+            console.log(err);
+        } else {
+            data.userData = dbResUser.rows[0]
+            const labid = dbResUser.rows[0].labid
+
+            const sqlLab = `SELECT * FROM laboratories WHERE labid = $1;`
+            db.query(sqlLab, [labid], (err, dbResLab) => {
+              if (err) {
+                console.log(`Lab`);
+                console.log(err);
+              } else {
+                data.labData = dbResLab.rows[0]
+              }
+            })
+
+            const sqlSkill = `SELECT skill FROM skills WHERE userid = $1;`
+            db.query(sqlSkill, [userid], (err, dbResSkill) => {
+                if (err) {
+                    console.log(`Skill`);
+                    console.log(err);
+                } else {
+                    data.skillData = dbResSkill.rows
+                    // res.send({data})
+                    res.render(`user_update`, {data, alert:''})
+                }
+            })
+        }
+    })
 })
 
 
+// Update user
+router.patch(`/user/:userid`, (req, res) => {
+    
+})
 
 
 

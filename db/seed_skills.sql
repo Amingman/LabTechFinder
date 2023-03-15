@@ -59,3 +59,8 @@ INSERT INTO skills (labid, userid, skill) VALUES (3, 6, 'Flow Cytometry');
 INSERT INTO skills (labid, userid, skill) VALUES (3, 6, 'Fluorescent Microscopy');
 INSERT INTO skills (labid, userid, skill) VALUES (3, 6, 'BLAST');
 INSERT INTO skills (labid, userid, skill) VALUES (3, 6, 'Cell Culture');
+
+
+INSERT INTO skills (labid, userid, skill) VALUES (17, 22, 'Fluorescent Microscopy');
+INSERT INTO skills (labid, userid, skill) VALUES (17, 22, 'BLAST');
+INSERT INTO skills (labid, userid, skill) VALUES (17, 22, 'Cell Culture');

@@ -7,19 +7,6 @@ const MemoryStore = require('memorystore')(session)
 const middlewares = require(`./middlewares/middlewares_object`)
 const axios = require("axios");
 
-// News API
-// const options = {
-//     method: 'GET',
-//     url: 'https://newsdata.io/api/1/news?apikey=pub_18880686ef76f718468c45fffd56a1c37e408&country=au&language=en&category=science&page',
-//     // params: {id: 'country-us', numberOfRow: '5', pageNumber: '1', sortBy: 'hot'},
-//     // headers: {
-//     //   'X-RapidAPI-Key': '205e605d9bmsh0126ab975efa369p1e6b1cjsn4047847b6823',
-//     //   'X-RapidAPI-Host': 'hot-breaking-news-latest-news.p.rapidapi.com'
-//     // }
-//   };
-
-
-
 
 // Controllers
 const labController = require(`./controllers/lab_controller`)
@@ -63,6 +50,8 @@ app.use(middlewares.viewHelpers)
 
 
 app.get([`/`, `/home`], (req, res) => {
+
+    // News API
     let acceptedSource = [`technews`, `nasa`, `sciencealert`, `theguardian`, `gizmodo`, `phys`]
     let top5News = []
     let url = 'https://newsdata.io/api/1/news?apikey=pub_18880686ef76f718468c45fffd56a1c37e408&country=au&language=en&category=science&page'
@@ -86,7 +75,6 @@ app.get([`/`, `/home`], (req, res) => {
     }).catch(function (error) {
         console.error(error);
     });
-
 })
 
 
@@ -96,6 +84,8 @@ app.use(`/user`, userController) // router for users
 
 const db = require(`./db`)
 db.connect()
+
+
 
 
 
