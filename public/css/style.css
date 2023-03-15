@@ -415,9 +415,11 @@ article {
 }
 
 .register {
-    display: grid;
-    justify-content: start;
+    /* display: grid; */
     text-align: left;
+    margin: 0px;
+    height: 100%;
+    width: 100%;
 }
 
 .delete {
@@ -430,6 +432,37 @@ article {
     display: flex;
     justify-content: center;
 }
+
+.lab-control {
+    position: relative;
+    display: grid;
+    gap: 1em;
+    height: 10vh;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 5em;
+}
+
+.lab-control form {
+    /* position: absolute; */
+    margin: 0;
+    height: inherit;
+    display: grid;
+    /* width: max-content; */
+}
+
+.lab-control button {
+    margin: 0;
+}
+
+.update {
+    display: grid;
+    text-align: left;
+    justify-content: start;
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+}
+
 
 @media screen and (max-width: 500px) {
     header {

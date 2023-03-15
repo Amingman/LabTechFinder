@@ -238,6 +238,54 @@ router.get(`/:labid`, (req,res) => {
 })
 
 
+// Update user
+router.post(`/edit/:userid`, (req, res) => {
+    const labid = req.body.labid
+    const labName = req.body.labName
+    const desc = req.body.description
+    const labEmail = req.body.labEmail
+
+
+       
+
+    const sqlLab = `UPDATE laboratories SET name = $1, description = $2, email = $3 WHERE labid = $4;`
+
+    let labInsert = [labName, desc, labEmail, labid]
+
+    db.query(sqlLab, labInsert, (err, dbResLab) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(`UPDATE`);
+            console.log(dbResLab)
+            res.redirect(`/lab/${labid}`)
+        }
+    })
+})
+
+
+
+
+
+
+
+// Edit lab form
+router.get(`/edit/:labid`, (req, res) => {
+    const labid = req.params.labid
+    const sqlLab = `SELECT * FROM laboratories WHERE labid = $1;`
+    let data = {}
+
+
+    db.query(sqlLab, [labid], (err, dbResLab) => {
+        if (err) {
+            // console.log(`Lab`);
+            console.log(err);
+        } else {
+            data.labData = dbResLab.rows[0]
+            res.render(`lab_update`, {data})
+        }
+    })
+})
 
 
 

@@ -51,11 +51,11 @@
 
         <div>
             <p>Password</p>
-            <input id="pass1" type="password" name="pass" required="required">
+            <input id="pass1" type="password" name="pass" required="required" minlength="6">
         </div>
         <div>
             <p>Confirm password</p>
-            <input id="pass2" type="password" name="confirm" required="required">
+            <input id="pass2" type="password" name="confirm" required="required" minlength="6">
         </div>
 
         <% } else { %>
@@ -72,6 +72,3 @@
     <button id="lab_submit" class="button">Update and log out</button>
     <p style="color: red;"><%= alert %></p>
 </form>
-
-
-<!-- $2b$10$2k0CAHA8.YXfT/14BmYGsu73Vmze4BGuzo3lOvzTiHcnaTfEz -->

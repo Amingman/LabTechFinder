@@ -52,13 +52,19 @@
     </section>
 </section>
 
-<form action="/user/new" style="margin-top: 1em;" class="register" method="post">
-    <input type="hidden" name="labName" value="<%= data.labData.name %>">
-    <input type="hidden" name="labEmail" value="<%= data.labData.email %>">
-    <button class="button" type="hidden" name="labid" value="<%= data.labData.labid %>">Register member</button>
-</form>
+<section class="lab-control">
 
+    <form action="/user/new" class="register" method="post">
+        <input type="hidden" name="labName" value="<%= data.labData.name %>">
+        <input type="hidden" name="labEmail" value="<%= data.labData.email %>">
+        <button class="button" type="hidden" name="labid" value="<%= data.labData.labid %>">Register member</button>
+    </form>
 
+    <form action="/lab/edit/<%= data.labData.labid %>" class="register">
+        <button class="button">Update Lab Info</button>
+    </form>
+
+</section>
 
 
 
