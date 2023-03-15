@@ -36,3 +36,8 @@ You can use multiple search term and it will detect it automatically e.g. prot g
 
 
 Write comments, especially the dynamic db query
+
+
+# Bugs
+1. Deployment issues. Will not load the page. Probably routing problem.
+

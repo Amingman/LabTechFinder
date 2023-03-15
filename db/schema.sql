@@ -24,6 +24,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE skills (
+    labid INTEGER,
     userid INTEGER,
     skill TEXT
 );

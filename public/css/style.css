@@ -4,7 +4,7 @@
 }
 
 *{
-    /* border: 1px solid red; */
+    border: 1px solid red;
     font-family: roboto-medium;
 }
 
@@ -342,6 +342,54 @@ footer {
     font-size: 90%;
     padding: 5px;
     margin-bottom: 1em;
+}
+
+.biodata {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    font-size: 100%;
+    justify-content: space-between;
+
+
+}
+
+.basic-info {
+    display: grid;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+    height: 100%;
+    font-size: 1.5em;
+}
+
+.basic-info p {
+    width: 100%;
+    margin: 0px;
+    /* margin-right: 0px; */
+}
+
+.basic-info p:nth-child(1) {
+    font-size: 1.8em;
+    margin-top: 0;
+}
+
+.lab-info {
+    align-self: center;
+}
+
+.contacts {
+    align-self: end;
+}
+
+article {
+    padding-left: 0;
+    padding-right: 0;
+
+}
+
+.career-info {
+    margin-top: 2em;
+    font-size: 1.2em;
 }
 
 @media screen and (max-width: 500px) {

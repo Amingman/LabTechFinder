@@ -1,0 +1,37 @@
+<!-- <h1 class="welcome"></h1> -->
+
+<section class="biodata">
+    <section class="basic-info">
+        <p><span><%= data.userData.name %></span></p>
+        <div class="lab-info">
+            <article>Member of: <span><%= data.labData.name %></span></article>
+            <article>Position: <span><%= data.userData.role %></span></article>
+        </div>
+        <div class="contacts">
+            <article>Email: <span><%= data.userData.email %></span></article>
+            <article>Lab Email: <span><%= data.labData.email %></span></article>
+        </div>
+    </section>
+    <section class="">
+        <img class="member-photo" src="<%= data.userData.photo %>" alt="">
+    </section>
+</section>
+
+<section class="career-info">
+    <h3 class="title">About</h3>
+    <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad officia error voluptates doloribus doloremque officiis alias vero et est vitae distinctio quod totam fuga corrupti nobis nisi aliquid, nesciunt id!</article>
+    <article>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam dolore, ducimus, repudiandae exercitationem consectetur odit, aperiam soluta possimus nam eveniet ipsam explicabo vitae rem quisquam quod consequuntur quas. Sed, impedit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat obcaecati consectetur, numquam harum odit nihil praesentium quo, totam sit rem provident eligendi voluptatibus enim quia dolor vero similique molestias. Corporis.</article>
+</section>
+
+<section class="career-info">
+    <h3 class="title">Skills</h3>
+    <article>
+        <% data.skillData.forEach((skill, index) => { %>
+            <% if (index == data.skillData.length - 1) { %>
+                <%= skill.skill %>.
+            <% } else { %>
+                <%= skill.skill %>,
+            <% } %> 
+    <% }) %>
+    </article>
+</section>

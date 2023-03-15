@@ -119,8 +119,35 @@ router.get(`/:userid`, (req,res) => {
             console.log(err);
         }
         data.userData = dbRes.rows[0]
-        res.render(`user_page]`, {data})
+        // res.render(`user_page`, {data})
+
+        const sql2 = `SELECT * FROM laboratories WHERE labid = $1;`
+
+        db.query(sql2, [data.userData.labid], (err, dbRes2) => {
+            if (err) {
+                console.log(err);
+            }
+            data.labData = dbRes2.rows[0]
+            // res.send(data)
+            // res.render(`user_page`, {data})
+        })
+
+        const sql3 = `SELECT skill FROM skills WHERE userid = $1;`
+
+        db.query(sql3, [data.userData.userid], (err, dbRes3) => {
+            if (err) {
+                console.log(err);
+            }
+            data.skillData = dbRes3.rows
+            // res.send(data)
+            res.render(`user_page`, {data})
+        })
+    
     })
+
+
+
+
 })
 
 
