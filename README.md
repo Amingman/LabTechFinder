@@ -23,14 +23,14 @@ You can use multiple search term and it will detect it automatically e.g. prot g
 | Delete lab | Delete | /lab/:labid |
 | Edit lab details form | GET | /lab/:labid/edit |
 | Edit lab details | PUT/PATCH | /lab/:labid |
-|  | | |
+| | | |
 | Search lab member form | GET | /user | Y
 | Search lab member | POST | /user_search | Y
-| User details | GET | /user/:userid |
-| Update lab member details form | GET | /user/:userid/edit |
+| User details | GET | /user/:userid | Y
 | Add lab member form | GET | /user/new |
 | Add lab member | POST | /user/:userid |
 | Remove lab member | DELETE | /user/:userid |
+| Update lab member details form | GET | /user/:userid/edit |
 | Update user details | PUT/PATCH | /user/:userid |
 
 
@@ -40,4 +40,6 @@ Write comments, especially the dynamic db query
 
 # Bugs
 1. Deployment issues. Will not load the page. Probably routing problem.
+2. News without author = null. Return error reading null
+
 

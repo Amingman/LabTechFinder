@@ -4,7 +4,7 @@
 }
 
 *{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     font-family: roboto-medium;
 }
 
@@ -390,6 +390,26 @@ article {
 .career-info {
     margin-top: 2em;
     font-size: 1.2em;
+}
+
+.form input {
+    width: 100%;
+}
+
+.form textarea {
+    width: 100%;
+}
+
+.button {
+    /* height: 70%; */
+    margin: auto;
+    align-content: center;
+    font-size: 1em;
+    aspect-ratio: 5/3;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 1em;
+    display: grid;
 }
 
 @media screen and (max-width: 500px) {

@@ -118,6 +118,10 @@ router.post(`/lab_search/bypi`, (req, res) => {
 
 })
 
+router.get(`/new`, (req, res) => {
+    res.render(`lab_add`)
+})
+
 router.get(`/:labid`, (req,res) => {
     const labid = req.params.labid
     const sql = `SELECT * FROM laboratories WHERE labid = $1;`
@@ -141,5 +145,11 @@ router.get(`/:labid`, (req,res) => {
         })
     })
 })
+
+
+
+
+
+
 
 module.exports = router
