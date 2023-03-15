@@ -57,6 +57,7 @@ Write comments, especially the dynamic db query
 # Bugs
 1. Deployment issues. Will not load the page. Probably routing problem.
 2. Still dont understand how HTTP methods work. What is a "resource" and why post is different from put / patch?
-3. 
+3. Couldn't get put/patch working. using post for now
+
 
 

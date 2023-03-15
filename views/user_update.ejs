@@ -1,8 +1,9 @@
 <h1 class="welcome">Update User</h1>
 <h1 class="welcome"><%= data.userData.name %></h1>
 
-<form action="/user" class="form" style="padding: 10px" method="patch" id="update">
+<form action="/user/edit/<%= data.userData.userid %>" class="form" style="padding: 10px" method="post" id="update">
     <input type="hidden" name="labid" value="<%= data.labData.labid %>">
+    <input type="hidden" name="userid" value="<%= data.userData.userid %>">
     <section class="metrics">
         <h3 style="margin-top: 1em;">Personal Details</h3>
         <div>
@@ -30,7 +31,7 @@
 
         <% } else { %>
             <!-- Default values if no access -->
-            <input type="hidden" name="role" value="<%= data.userData.role %>">
+            <input type="hidden" name="role" value="<%= data.userData.accesslevel %>,<%= data.userData.role %>">
 
         <% } %>
 
@@ -44,7 +45,7 @@
          
         <div>
             <p>Skills (comma delimited)</p>
-            <textarea name="skill" cols="40" rows="5" required form="update"><% data.skillData.forEach(skill => { %><%= skill.skill %>,<% }) %>
+            <textarea name="skill" cols="40" rows="5" form="update"><% data.skillData.forEach(skill => { %><%= skill.skill %>,<% }) %>
             </textarea>
         </div>
 
@@ -68,6 +69,9 @@
         <% } %>
 
     </section>
-    <button id="lab_submit" class="button">Submit</button>
+    <button id="lab_submit" class="button">Update and log out</button>
     <p style="color: red;"><%= alert %></p>
 </form>
+
+
+<!-- $2b$10$2k0CAHA8.YXfT/14BmYGsu73Vmze4BGuzo3lOvzTiHcnaTfEz -->

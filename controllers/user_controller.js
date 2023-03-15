@@ -223,6 +223,70 @@ router.delete(`/`, (req, res) => {
     })
 })
 
+// Update user
+router.post(`/edit/:userid`, (req, res) => {
+    const labid = req.body.labid
+    const userid = req.body.userid
+    const userName = req.body.userName
+    const userEmail = req.body.userEmail
+    const fullRole = req.body.role.split(`,`)
+    const accesslevel = fullRole[0]
+    const role = fullRole[1]
+    const photo = req.body.userImage
+    const password = req.body.pass
+    const confirm = req.body.confirm
+    const skills = req.body.skill.split(`,`).slice(0,-1)
+
+
+
+    if (password != confirm) {
+        res.render(`user_add`, {labid, labName, alert:`Password does not match.`})
+    } else {
+
+        const sqlDrop = `DELETE FROM skills WHERE userid = $1`
+        db.query(sqlDrop, [userid], (err, dbResDrop) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(`DELETE`);
+                console.log(dbResDrop);
+
+                skills.forEach(skill => {
+                    const sqlSkill = `INSERT INTO skills (labid, userid, skill) VALUES ($1, $2, $3)`
+                    
+                    db.query(sqlSkill, [labid, userid, skill], (err, dbResSkill) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log(`SKILLS`);
+                            console.log(dbResSkill);
+                        }
+                    })
+                });
+            }                
+        })
+
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(password, salt, (err, digestedPass) => {
+
+                const sqlUser = `UPDATE users SET name = $1, role = $2, email = $3, digpassword = $4, photo = $5, accesslevel = $6 WHERE userid = $7;`
+
+                let userInsert = [userName, role, userEmail, digestedPass, photo, accesslevel, userid]
+
+                db.query(sqlUser, userInsert, (err, dbResUser) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(`UPDATE`);
+                        console.log(dbResUser)
+                        res.redirect(`/`)
+                    }
+                })
+            })
+        })
+    }
+})
+
 // Edit user form
 router.get(`/edit/:userid`, (req, res) => {
     const userid = req.params.userid
@@ -264,10 +328,7 @@ router.get(`/edit/:userid`, (req, res) => {
 })
 
 
-// Update user
-router.patch(`/user/:userid`, (req, res) => {
-    
-})
+
 
 
 
