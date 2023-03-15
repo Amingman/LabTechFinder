@@ -8,7 +8,7 @@
 # Features
 
 ### Daily News
-Implemented [Axios](https://axios-http.com/) client to use the [newsdata](https://newsdata.io/) API.
+Implemented [Axios](https://axios-http.com/) client to use the [newsdata](https://newsdata.io/) API. It's not perfect, though, as the API unable to capture pictures and articles reliable at times. For example, it can't capture both the picture and article from sciencealert.
 
 The news are locked to Australia and *Science* category. Unfortunately the more *scientific* news sources tend to have poor image resolution.
 
@@ -92,7 +92,6 @@ Note: more details in artefacts.
 ---
 
 ## Upcoming features
-
 - [ ] Search by skills
 - [ ] Access level-based functionality
 - [ ] Direct messaging
@@ -119,8 +118,10 @@ There are some sample pictures in the public directory. Use them whenever approp
 1. Deployment issues. Load the page but got error message.
 2. Still dont understand how HTTP methods work. What is a "resource" and why post is different from put / patch?
 3. Couldn't get put/patch working. using post for now
+4. Adding new lab member causes a bug where the picture not loaded properly. Exiting the page and reentering works, though. Currently redirecting to lab page to circumvent this problem.
 
 ## To Do List (For Later)
+- [ ] Login Sessions
 - [ ] Write more comments, especially the dynamic db query.
 - [ ] Add useful links.
 - [ ] Add the Abouts page with the content of this documentation.

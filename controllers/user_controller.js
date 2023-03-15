@@ -149,6 +149,8 @@ router.get(`/:userid`, (req,res) => {
 
 router.post(`/new`, (req, res) => {
     const labid = req.body.labid
+    // console.log(`Lab ID @ /new`);
+    // console.log(labid);
     const labName = req.body.labName
     const labEmail = req.body.labEmail
     // res.send(`${labid} ${labName}`)
@@ -159,6 +161,8 @@ router.post(`/new`, (req, res) => {
 
 router.post(`/`, (req, res) => {
     const labid = req.body.labid
+    // console.log(`labid @ /`);
+    // console.log(labid);
     const labName = req.body.labName
     const labEmail = req.body.labEmail
     const userName = req.body.userName
@@ -181,28 +185,36 @@ router.post(`/`, (req, res) => {
 
                 let userInsert = [labid, userName, role, userEmail, digestedPass, photo, accesslevel]
 
+                console.log(userInsert);
+
                 db.query(sqlUser, userInsert, (err, dbResUser) => {
-                    // console.log(dbResUser)
-                    // console.log(dbResUser.rows[0])
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        // console.log(dbResUser)
+                        // console.log(dbResUser.rows[0])
 
-                    let userid = dbResUser.rows[0].userid
+                        let userid = dbResUser.rows[0].userid
 
-                    console.log(`User Id = ${userid}`)
+                        console.log(`User Id = ${userid}`)
 
-                    let data = {
-                        userData: [{
-                            name:userName,
-                            photo:photo,
-                            userid:userid,
-                            role:role,
-                            email:userEmail
-                        }],
-                        labData: {
-                            email:labEmail,
-                            name:labName
+                        let data = {
+                            userData: [{
+                                name:userName,
+                                photo:photo,
+                                userid:userid,
+                                role:role,
+                                email:userEmail
+                            }],
+                            labData: {
+                                email:labEmail,
+                                name:labName
+                            }
                         }
+                        // res.render(`user_page`, {data})
+                        res.redirect(`/lab/${labid}`)
                     }
-                    res.render(`user_page`, {data})
+
                 })
             })
         }) 

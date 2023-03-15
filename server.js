@@ -52,7 +52,8 @@ app.use(middlewares.viewHelpers)
 app.get([`/`, `/home`], (req, res) => {
 
     // News API
-    let acceptedSource = [`technews`, `nasa`, `sciencealert`, `theguardian`, `gizmodo`, `phys`]
+    // let acceptedSource = [`technews`, `nasa`, `sciencealert`, `theguardian`, `gizmodo`, `phys`]
+    let acceptedSource = [`technews`, `nasa`, `theguardian`, `gizmodo`, `phys`]
     let top5News = []
     let url = 'https://newsdata.io/api/1/news?apikey=pub_18880686ef76f718468c45fffd56a1c37e408&country=au&language=en&category=science&page'
     
