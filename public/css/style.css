@@ -185,6 +185,8 @@ footer {
     padding-left: 2vw;
     color: white;
     margin-top: 2em;
+    /* grid-template-columns: max-content 1fr;
+    justify-content: space-between; */
 }
 
 
@@ -411,6 +413,19 @@ article {
     margin-top: 1em;
     display: grid;
 }
+
+.delete {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+}
+
+.delete div {
+    display: flex;
+}
+/* .delete span {
+    display: flex;
+} */
 
 @media screen and (max-width: 500px) {
     header {

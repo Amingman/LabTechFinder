@@ -18,9 +18,9 @@ You can use multiple search term and it will detect it automatically e.g. prot g
 | Browse lab form | GET | /lab | Y
 | Browse lab | POST | /lab_search | Y
 | Lab details | GET | /lab/:labid | Y
-| Add lab form | GET | /lab/new |
-| Add lab | POST | /lab/:labid |
-| Delete lab | Delete | /lab/:labid |
+| Add lab form | GET | /lab/new | Y
+| Add lab | POST | /lab/:labid | Y
+| Delete lab | Delete | /lab/:labid | Y
 | Edit lab details form | GET | /lab/:labid/edit |
 | Edit lab details | PUT/PATCH | /lab/:labid |
 | | | |

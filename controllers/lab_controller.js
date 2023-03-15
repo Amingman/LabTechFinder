@@ -65,7 +65,6 @@ router.post(`/lab_search/byname`, (req, res) => {
 })
 
 
-
 router.post(`/lab_search/bypi`, (req, res) => {
     let name = req.body.pi
     let names = name.split(` `)
@@ -188,6 +187,20 @@ router.post(`/`, (req, res) => {
         })        
     }
 })
+
+router.delete(`/`, (req, res) => {
+    const labid = req.body.labid
+    console.log(labid);
+    const sql = `DELETE FROM laboratories WHERE labid = ${labid};`
+    db.query(sql, (err, dbRes) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect(`/`)
+        }
+    })
+})
+
 
 
 router.get(`/:labid`, (req,res) => {
