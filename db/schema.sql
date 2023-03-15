@@ -2,7 +2,7 @@ CREATE DATABASE labtechfinder;
 
 DROP TABLE IF EXISTS laboratories;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS laboratories;
+DROP TABLE IF EXISTS skills;
 
 CREATE TABLE laboratories (
     labid SERIAL PRIMARY KEY,

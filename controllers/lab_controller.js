@@ -1,6 +1,7 @@
 const express = require(`express`)
 // const router = express.Router()
 const router = express.Router()
+const bcrypt = require(`bcrypt`);
 
 // const {ensureLoggedIn} = require(`../middlewares/middlewares_object`)
 
@@ -119,8 +120,75 @@ router.post(`/lab_search/bypi`, (req, res) => {
 })
 
 router.get(`/new`, (req, res) => {
-    res.render(`lab_add`)
+    let alert = ''
+    res.render(`lab_add`, {alert})
 })
+
+// Create new Lab and render the lab details page after
+router.post(`/`, (req, res) => {
+    const labName = req.body.labName
+    const labEmail = req.body.labEmail
+    const labDesc = req.body.description
+    const piName = req.body.piName
+    const piEmail = req.body.piEmail
+    const piImage = req.body.piImage
+    const piPass = req.body.piPass
+    const confirm = req.body.confirm
+
+    if (piPass != confirm) {
+        res.render(`lab_add`, {alert:`Password does not match.`})
+    } else {
+
+        const sqlLab = `INSERT INTO laboratories (name, description, email) VALUES ($1, $2, $3) RETURNING labid;`
+        let labInsert = [labName, labDesc, labEmail]
+
+        db.query(sqlLab, labInsert, (err, dbResLab) => {
+            if (err) {
+                console.log(err);
+            } else {
+                let labid = dbResLab.rows[0].labid
+                console.log(dbResLab.rows[0])
+                console.log(`Lab Id = ${labid}`)
+
+                
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(piPass, salt, (err, digestedPass) => {
+        
+                        const sqlUser = `INSERT INTO users (labid, name, role, email, digpassword, photo, accesslevel) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING userid;`
+        
+                        let userInsert = [labid, piName, 'PI', piEmail, digestedPass, piImage, 1]
+        
+                        db.query(sqlUser, userInsert, (err, dbResUser) => {
+                            console.log(dbResUser)
+                            console.log(dbResUser.rows[0])
+
+                            let userid = dbResUser.rows[0].userid
+
+                            console.log(`User Id = ${userid}`)
+
+                            let data = {
+                                userData: [{
+                                    name:piName,
+                                    photo:piImage,
+                                    userid:userid,
+                                    role:'PI',
+                                    email:piEmail
+                                }],
+                                labData: {
+                                    email:labEmail,
+                                    description:labDesc,
+                                    name:labName
+                                }
+                            }
+                            res.render(`lab_page`, {data})
+                        })
+                    })
+                }) 
+            }
+        })        
+    }
+})
+
 
 router.get(`/:labid`, (req,res) => {
     const labid = req.params.labid

@@ -2,7 +2,7 @@
 
 
 <form action="/lab" class="form" style="padding: 10px;" method="post" id="register">
-    <h3 style="">Laboratory Information</h3>
+    <h3>Laboratory Information</h3>
     <section>
         <p>Laboratory Name</p>
         <input type="text" name="labName" required="required" placeholder="e.g. Lorem Mechatronics and Rocketry">
@@ -13,11 +13,7 @@
     </section>
     <section>
         <p>Laboratory description</p>
-        <textarea name="text" cols="40" rows="5" required form="register" placeholder="e.g. I am attempting to harness the innate energy of stabilized vibrational resonance, bonded on a quantum level with domains of alternating opposite direction within the context of highlighting spatial harmony within the reality matrix.
-
-Focusing on a single point in space-time can lead to an understanding of cyclic harmonic repitition, in sympathetic resonance with a higher order harmonic series within the context of highlighting spiritual entrainment between sentient beings. 
-
-When engaged on an unconscious level, within the depths of your innermost psyche, you can easily tap into hyperbolic sub-resonant variations, interwoven on a molecular level with total holistic resonant emanations manifesting continuous interaction with the Godess."></textarea>
+        <textarea name="description" cols="40" rows="5" required form="register" placeholder="e.g. When engaged on an unconscious level, within the depths of your innermost psyche, you can easily tap into hyperbolic sub-resonant variations, interwoven on a molecular level with total holistic resonant emanations manifesting continuous interaction with the Goddess."></textarea>
 
         <!-- <input type="text" name="text" required="required" placeholder="" style="height: 50px;"> -->
     </section>
@@ -34,19 +30,17 @@ When engaged on an unconscious level, within the depths of your innermost psyche
         </div>
         <div>
             <p>Headshot photo url</p>
-            <input type="url" name="piImage" required="required" placeholder="e.g. ../images/doesnotexist/male7.jpeg">
+            <input type="text" name="piImage" required="required" placeholder="e.g. ../images/doesnotexist/male7.jpeg">
         </div>
         <div>
             <p>Password</p>
-            <input id="pass1" type="password" name="piPass" required="required" placeholder="e.g. banana">
+            <input id="pass1" type="password" name="piPass" required="required" placeholder="e.g. johndoe">
         </div>
         <div>
             <p>Confirm password</p>
-            <input id="pass2" type="password" required="required" placeholder="e.g. banana">
+            <input id="pass2" type="password" name="confirm" required="required" placeholder="e.g. johndoe">
         </div>
     </section>
-    <input type="checkbox" required="required" style="display: inline-block;"><p style="display: inline-block; width: 90%; padding-top: 15px;">I have reviewed the information provided.</p>
     <button id="lab_submit" class="button">Submit</button>
+    <p style="color: red;"><%= alert %></p>
 </form>
-
-<script src="/dom_script.js"></script>
