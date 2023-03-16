@@ -5,6 +5,7 @@
 
 html {
     min-height: 100vh;
+    background-color: aliceblue;
 }
 
 *{
@@ -578,6 +579,21 @@ article {
 .trash-can:hover {
     text-decoration: underline;
     background-color: rgb(191, 191, 191);
+}
+
+.link-header {
+    font-size: 1.5em;
+    margin-top: 2em;
+}
+
+.web-link {
+    width: max-content;
+    padding: 10px;
+}
+
+.access-chart {
+    width: 100%;
+    max-width: 1200px;
 }
 
 @media screen and (max-width: 500px) {

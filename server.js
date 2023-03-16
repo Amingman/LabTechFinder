@@ -84,8 +84,13 @@ app.use(`/lab`, labController) // router for laboratories
 app.use(`/user`, userController) // router for users
 app.use(`/social`, socialController) // router for users
 
+app.get(`/links`, (req, res) => {
+    res.render(`links`, {session: req.session})
+})
 
-
+app.get(`/about`, (req, res) => {
+    res.render(`about`, {session: req.session})
+})
 
 
 

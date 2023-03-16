@@ -1,5 +1,19 @@
 # Lab Tech Finder v1.0
 ### Social app to find a lab technician with a specific skill-set.
+The app is designed with instituion-level scope in-mind.
+
+Sometimes during a project, you unexpectedly required to implement or use a new or an obscure piece of technology. More often than not, you will need some form of guidance.
+
+Optimising a protocol is [not cheap](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4582800/) and very time consuming! Be honest, you must have at least thrown away a few SDS-PAGE gels because either the concentration is too high or it did not set properly.
+
+This is where Lab Tech Finder comes in! This app allows user to search fellow researchers based on their skills, as well as their lab's expertise! (lab field of study and publication feature will be added at later version). No more months of optimising protocol, just make sure you buy your mentor a coffe or a carton!
+
+The app is designed with instituion-level scope in-mind. That means there is a subdivision of functionality for each user, depending on your account level. More details below.
+
+
+---
+
+
 Version 1.0 is made within 3 days as General Assembly project.
 
 Hosted at Render.
@@ -64,6 +78,9 @@ The app also uses [bcrypt](https://www.npmjs.com/package/bcrypt) to encrypt your
 ---
 
 ## Access restrictions 
+
+![Access Chart](./public/images/LTF%20Access%20Chart.jpg)
+
 - Non-lab members can't edit other lab details at any level.
 - Only PIs are allowed to delete their own lab
 - Only PIs and Managers are allowed to update lab information.
@@ -110,8 +127,8 @@ The app also uses [bcrypt](https://www.npmjs.com/package/bcrypt) to encrypt your
 | Log in | POST | /session | Y
 | Log out | DELETE | /session | Y
 | | | |
-| Useful links | GET | /links |
-| About page | GET | /about |
+| Useful links | GET | /links | Y
+| About page | GET | /about | Y
 | My lab | GET | /lab/:labid | Y
 | | | |
 | Get all messages | Get | /social/messages/:userid | Y
