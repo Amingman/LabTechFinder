@@ -357,7 +357,10 @@ router.put(`/edit/:userid`, (req, res) => {
                     } else {
                         console.log(`UPDATE`);
                         console.log(dbResUser)
-                        res.redirect(`/`)
+                        // res.redirect(`/`)
+                        req.session.destroy(() => {
+                            res.redirect(`/`)
+                        })
                     }
                 })
             })

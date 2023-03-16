@@ -1,25 +1,29 @@
-<h1 class="welcome">Update Laboratory</h1>
-<h1 class="welcome"><%= data.labData.name %></h1>
+<% if (session.activeLabId == data.labData.labid && session.activeUserAccess < 3) { %>
+    <h1 class="welcome">Update Laboratory</h1>
+    <h1 class="welcome"><%= data.labData.name %></h1>
 
-<form action="/lab/edit/<%= data.labData.labid %>" class="form" style="padding: 10px" method="post" id="update">
-    <input type="hidden" name="_method" value="PUT">
-    <input type="hidden" name="labid" value="<%= data.labData.labid %>">
-    <section class="metrics">
-        <div>
-            <p>Laboratory name</p>
-            <input type="text" name="labName" required="required" value="<%= data.labData.name %>">
-        </div>
-        <div>
-            <p>Description</p>
-            <textarea name="description" cols="40" rows="5" form="update"><%= data.labData.description %></textarea>
-        </div>
-        <div>
-            <p>Laboratory email address</p>
-            <input type="email" name="labEmail" required="required" value="<%= data.labData.email %>">
-        </div>
-    </section>
+    <form action="/lab/edit/<%= data.labData.labid %>" class="form" style="padding: 10px" method="post" id="update">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="labid" value="<%= data.labData.labid %>">
+        <section class="metrics">
+            <div>
+                <p>Laboratory name</p>
+                <input type="text" name="labName" required="required" value="<%= data.labData.name %>">
+            </div>
+            <div>
+                <p>Description</p>
+                <textarea name="description" cols="40" rows="5" form="update"><%= data.labData.description %></textarea>
+            </div>
+            <div>
+                <p>Laboratory email address</p>
+                <input type="email" name="labEmail" required="required" value="<%= data.labData.email %>">
+            </div>
+        </section>
 
-    <button id="lab_submit" class="button">Update</button>
+        <button id="lab_submit" class="button">Update</button>
 
 
-</form>
+    </form>
+<% } else { %>
+    <h1 class="welcome" style="color: red;">Access Restricted</h1>
+<% } %>

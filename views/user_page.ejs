@@ -39,14 +39,17 @@
 </section>
 
 
-
+<!-- Only lab PI, managers and self can edit the profile -->
+<% if (session.activeLabId == data.labData.labid && session.activeUserAccess < data.userData.accesslevel || activeUserId == data.userData.userid) { %>
 
 <form action="/user/edit/<%= data.userData.userid %>" style="margin-top: 1em;" class="update">
     <button class="button">Update</button>
 </form>
 
+<% } %>
 
-
+<!-- Only lab member of "higher" access level can remove a member up to their level -->
+<% if (session.activeLabId == data.labData.labid && session.activeUserAccess < data.userData.accesslevel || activeUserId == data.userData.userid) { %>
 
 <form action="/user" method="post" style="margin-top: 5em;" class="delete">
     <input type="hidden" name="_method" value="DELETE">
@@ -56,3 +59,4 @@
     </div>
     <button class="button" type="hidden" name="userid" value="<%= data.userData.userid %>" style="background-color: red;">Delete</button>
 </form>
+<% } %>

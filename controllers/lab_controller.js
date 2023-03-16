@@ -259,6 +259,8 @@ router.put(`/edit/:labid`, (req, res) => {
             console.log(`UPDATE`);
             console.log(dbResLab)
             res.redirect(`/lab/${labid}`)
+            
+            // res.redirect(`/session/logout_handler`)
         }
     })
 })

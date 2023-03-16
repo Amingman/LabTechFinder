@@ -91,6 +91,7 @@ Note: So far, projects and field tables are not available yet.
 | | | |
 | Useful links | GET | /links |
 | About page | GET | /about |
+| My lab | GET | /lab/:labid
 
 Note: more details in artefacts.
 
@@ -98,7 +99,7 @@ Note: more details in artefacts.
 
 ## Upcoming features
 - [x] Search by skills
-- [ ] Access level-based functionality
+- [x] Access level-based functionality
 - [ ] Direct messaging
 - [ ] 1 account per e-mail limit
 - [ ] Image cloud hosting at cloudinary
@@ -107,13 +108,14 @@ Note: more details in artefacts.
 
 
 ## Access restrictions (in production)
-- Non-lab members can't edit other lab details at any level.
-- Only PIs are allowed to delete their own lab
-- Only PIs and Managers are allowed to "remove" a lab member up to their level.
-- Only PIs and Managers are allowed to "add" a new lab member
-- Only PIs and Managers are allowed to update a lab member's role up to manager.
-- Only a user can update their own skill list
-- Guests do not have any edit access. Only browse (and maybe message).
+- [x] Non-lab members can't edit other lab details at any level.
+- [x] Only PIs are allowed to delete their own lab
+- [x] Only PIs and Managers are allowed to update lab information.
+- [x] Only PIs, Managers and Self are allowed to "remove" a lab member up to their level.
+- [x] Only PIs and Managers are allowed to "add" a new lab member
+- [x] Only PIs and Managers are allowed to update a lab member's role up to one below their rank.
+- [x] Only a user can update their own skill list and password.
+- [x] Guests do not have any edit access. Only browse and sign up (and maybe message).
 
 ---
 
@@ -123,10 +125,9 @@ Note: more details in artefacts.
 There are some sample pictures in the public directory. Use them whenever appropriate.
 
 ## Bugs
-<!-- 1. Deployment issues. Load the page but got error message. -->
-2. Still dont understand how HTTP methods work. What is a "resource" and why post is different from put / patch?
+- Still dont understand how HTTP methods work. What is a "resource" and why post is different from put / patch?
+- What does ensure log in do?
 <!-- 4. Adding new lab member causes a bug where the picture not loaded properly. Exiting the page and reentering works, though. Currently redirecting to lab page to circumvent this problem. -->
-<!-- 5. Need to make footer at least positioned at 100vh. -->
 
 ## To Do List (For Later)
 - [x] Login Sessions

@@ -53,15 +53,7 @@ function setCurrentUser(req, res, next) {
         res.locals.activeUserAccess = req.session.activeUserAccess
         console.log((res.locals));
         next()
-        // db.query(sql, (err, dbRes) => {
-        //     // console.log(dbRes);
-        //     if (err) {
-        //         console.log(err);
-        //     } else {
-        //         res.locals.currentUser = dbRes.rows[0] // This will send currentUser to all the pages, including layouts
-        //         next()
-        //     }
-        // })
+
         
     } else {
         console.log(`no ID`);
@@ -73,7 +65,6 @@ function setCurrentUser(req, res, next) {
         console.log((res.locals));
         next()
     }
-
 }
 
 function ensureLoggedIn(req, res, next) {

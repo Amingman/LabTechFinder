@@ -6,6 +6,8 @@ const db = require(`../db`)
 db.connect()
 
 
+
+
 router.get(`/login`, (req, res) => {
     res.render(`login`, {alert:null, session: req.session})
 })
@@ -46,7 +48,7 @@ router.post(`/`, (req, res) => {
     
                         res.redirect(`/`)
                     } else {
-                        res.render(`login`, {session: req.session})
+                        res.render(`login`, {alert:'Incorrect email or password', session: req.session})
                     }
                 })
     
@@ -55,14 +57,12 @@ router.post(`/`, (req, res) => {
     })
 })
 
-
-
-
-router.delete(`/logout`, (req, res) => { // change this to delete instead of get when got time
+router.delete(`/logout`, (req, res) => {
     req.session.destroy(() => {
         res.redirect(`/`)
     })
 })
+
 
 
 

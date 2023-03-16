@@ -52,6 +52,7 @@
     </section>
 </section>
 
+<% if (session.activeLabId == data.labData.labid && session.activeUserAccess < 3) { %>
 <section class="lab-control">
 
     <form action="/user/new" class="register">
@@ -65,17 +66,20 @@
     </form>
 
 </section>
+<% } %>
+
+<% if (session.activeUserId == data.userData[0].userid) { %>
+    <form action="/lab" method="post" style="margin-top: 5em;" class="delete">
+        <input type="hidden" name="_method" value="DELETE">
+        <article style="color: red;">WARNING: This action cannot be reveresed</article>
+        <article style="color: red;">This will remove all lab members as well</article>
+        <div>
+            <input type="checkbox" required><span style="color: red;">I understand</span>
+        </div>
+        <button class="button" type="hidden" name="labid" value="<%= data.labData.labid %>" style="background-color: red;">Delete</button>
+    </form>
+<% } %>
 
 
-
-<form action="/lab" method="post" style="margin-top: 5em;" class="delete">
-    <input type="hidden" name="_method" value="DELETE">
-    <article style="color: red;">WARNING: This action cannot be reveresed</article>
-    <article style="color: red;">This will remove all lab members as well</article>
-    <div>
-        <input type="checkbox" required><span style="color: red;">I understand</span>
-    </div>
-    <button class="button" type="hidden" name="labid" value="<%= data.labData.labid %>" style="background-color: red;">Delete</button>
-</form>
 
 

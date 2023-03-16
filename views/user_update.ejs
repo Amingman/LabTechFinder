@@ -1,3 +1,4 @@
+<% if (session.activeLabId == data.labData.labid && session.activeUserAccess <= data.userData.accesslevel) { %>
 <h1 class="welcome">Update User</h1>
 <h1 class="welcome"><%= data.userData.name %></h1>
 
@@ -16,13 +17,15 @@
             <input type="email" name="userEmail" required="required" value="<%= data.userData.email %>">
         </div>
         <!-- Only available to higher level users -->
-        <% if (data.userData.accesslevel < 3) { %>
+        <% if (session.activeUserAccess < 3) { %>
         
             <div>
                 <p>Role</p>
                 <select name="role" id="" form="update" required>
-                    <option value="3,Postdoc Fellow">Postdoc Fellow</option>
+                <% if (session.activeUserAccess < 2) { %>
                     <option value="2,Manager">Manager</option>
+                <% } %>
+                    <option value="3,Postdoc Fellow">Postdoc Fellow</option>
                     <option value="3,Biostatistician">Biostatistician</option>
                     <option value="3,Animal Model Technician">Animal Model Technician</option>
                     <option value="3,Research Officer">Research Officer</option>
@@ -33,31 +36,29 @@
         <% } else { %>
             <!-- Default values if no access -->
             <input type="hidden" name="role" value="<%= data.userData.accesslevel %>,<%= data.userData.role %>">
-
         <% } %>
 
-        <div>
-            <p>Headshot photo url</p>
-            <input type="text" name="userImage" required="required" value="<%= data.userData.photo %>">
-        </div>
 
-        <!-- Only appears for own self -->
-        <% if (data.userData.userid == data.userData.userid) { %>
-         
-        <div>
-            <p>Skills (comma delimited)</p>
-            <textarea name="skill" cols="40" rows="5" form="update"><% data.skillData.forEach(skill => { %><%= skill.skill %>,<% }) %>
-            </textarea>
-        </div>
+        <% if (activeUserId == data.userData.userid) { %>            <!-- Only appear to self -->
+            <div>
+                <p>Headshot photo url</p>
+                <input type="text" name="userImage" required="required" value="<%= data.userData.photo %>">
+            </div>
 
-        <div>
-            <p>Password</p>
-            <input id="pass1" type="password" name="pass" required="required" minlength="6">
-        </div>
-        <div>
-            <p>Confirm password</p>
-            <input id="pass2" type="password" name="confirm" required="required" minlength="6">
-        </div>
+            <div>
+                <p>Skills (comma delimited)</p>
+                <textarea name="skill" cols="40" rows="5" form="update"><% data.skillData.forEach(skill => { %><%= skill.skill %>,<% }) %>
+                </textarea>
+            </div>
+
+            <div>
+                <p>Password</p>
+                <input id="pass1" type="password" name="pass" required="required" minlength="6">
+            </div>
+            <div>
+                <p>Confirm password</p>
+                <input id="pass2" type="password" name="confirm" required="required" minlength="6">
+            </div>
 
         <% } else { %>
             <!-- Default values if no access -->
@@ -73,3 +74,6 @@
     <button id="lab_submit" class="button">Update and log out</button>
     <p style="color: red;"><%= alert %></p>
 </form>
+<% } else { %>
+    <h1 class="welcome" style="color: red;">Access Restricted</h1>
+<% } %>

@@ -493,6 +493,10 @@ article {
     margin: 0px;
 }
 
+.logout:hover {
+    text-decoration: underline;
+}
+
 .login {
     display: grid;
     grid-template-columns: 1fr, 1fr, 1fr;

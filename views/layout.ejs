@@ -18,14 +18,13 @@
         <img src="/images/Logo_head.png" alt="">
         <div>
             <% if (session.activeUserId) { %>
-                <form action="/session/logout" method="post">
+                <form action="/session/logout" method="post" id="logout">
                     <input type="hidden" name="_method" value="DELETE">
-                    <button><a href="">Log Out</a></button>
+                    <button class="logout">Log Out</button>
                 </form>
             <% } else { %>
             <button><a href="/session/login">Log in</a></button>
             <% } %>
-            <!-- <button><a href="/session/login">Log in</a></button> -->
             <button><a href="/lab/new">Sign up</a></button>
         </div>
     </header>
