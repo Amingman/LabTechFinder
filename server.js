@@ -9,6 +9,7 @@ const axios = require("axios");
 
 
 // Controllers
+const sessionController = require(`./controllers/session_controller`)
 const labController = require(`./controllers/lab_controller`)
 const userController = require(`./controllers/user_controller`)
 console.log(labController);
@@ -44,7 +45,7 @@ app.use(middlewares.viewHelpers)
  
 
 
-
+app.use(`/session`, sessionController) // router for sessions
 
 
 

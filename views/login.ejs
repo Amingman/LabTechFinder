@@ -1,0 +1,24 @@
+<h1 style="font-size: 2em;">Log In</h1>
+
+<form action="/session" method="post" id="login">
+    <div class="login" style="grid-template-columns: min-content 1fr;">
+        <h3>E-mail</h3>
+        <input type="text" name="userEmail">
+        <h3>Password</h3>
+        <input type="password" name="password">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</form>
+
+<form action="/" id="home"></form>
+
+<% if (alert) { %>
+    <p style="color: red;"><%= alert %></p> 
+<% } %>
+
+<button form="home">Return</button>  <button form="login">Log In</button>
+
+

@@ -39,23 +39,29 @@ function viewHelpers(req, res, next) {
 function setCurrentUser(req, res, next) {
     // req.session.userId
 
-    const { userID } = req.session
-    res.locals.currentUser = {}
+    const { activeUserId } = req.session
+    // res.locals.currentUser = {}
 
 
-    if (userID) {
-        const sql = `SELECT * FROM users WHERE userid = ${userID}`
-        console.log(`got ID for ${userID}`);
-        db.query(sql, (err, dbRes) => {
-            // console.log(dbRes);
-            if (err) {
-                console.log(err);
-            } else {
-                res.locals.currentUser = dbRes.rows[0] // This will send currentUser to all the pages, including layouts
-                next()
-            }
-        })
-    
+    if (activeUserId) {
+        // const sql = `SELECT * FROM users WHERE userid = $1`
+        console.log(`Receive ID for ${req.session.activeUserName} at ID: ${req.session.activeUserId}`);
+        res.locals.activeLabId = req.session.activeLabId
+        res.locals.activeUserId = req.session.activeUserId
+        res.locals.activeUserName = req.session.activeUserName
+        res.locals.activeUserEmail = req.session.activeUserEmail
+        res.locals.activeUserAccess = req.session.activeUserAccess
+        next()
+        // db.query(sql, (err, dbRes) => {
+        //     // console.log(dbRes);
+        //     if (err) {
+        //         console.log(err);
+        //     } else {
+        //         res.locals.currentUser = dbRes.rows[0] // This will send currentUser to all the pages, including layouts
+        //         next()
+        //     }
+        // })
+        
     } else {
         console.log(`no ID`);
         next()
@@ -64,7 +70,7 @@ function setCurrentUser(req, res, next) {
 }
 
 function ensureLoggedIn(req, res, next) {
-    if (req.session.userID) return next()
+    if (req.session.activeUserId) return next()
     res.redirect("/login")
 }
 
