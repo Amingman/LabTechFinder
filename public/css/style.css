@@ -416,6 +416,13 @@ footer {
     align-self: end;
 }
 
+.contacts button {
+    /* height: 3em; */
+    padding: 10px;
+    font-size: 0.7em;
+    border-radius: 10px;
+}
+
 article {
     padding-left: 0;
     padding-right: 0;

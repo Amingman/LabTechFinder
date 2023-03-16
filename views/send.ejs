@@ -1,0 +1,20 @@
+
+
+<form action="/social/messages/<%= userData.userid %>" class="form" style="padding: 10px;" method="post" id="send">
+    <h1 style="font-size: 1.5em;">Send a message to <%= userData.name.split(' ')[0] %> </h1>
+    <input type="hidden" name="receiverid" value="<%= userData.userid %>">
+    <input type="hidden" name="labid" value="<%= userData.labid %>">
+    <section>
+        <p>From</p>
+        <input type="text" name="sender" required="required" placeholder="e.g. Montgomery Scott" maxlength="20">
+    </section>
+    <section>
+        <p>Subject</p>
+        <input type="text" name="subject" required="required" placeholder="e.g. Laws of physiscs" maxlength="30">
+    </section>
+    <section>
+        <p>Message</p>
+        <textarea name="message" cols="40" rows="5" form="send" placeholder="I cannae change the laws of physics! I've got to have thirty minutes!"></textarea>
+    </section>
+    <button class="button">Send</button>
+</form>

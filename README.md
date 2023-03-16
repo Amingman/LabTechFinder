@@ -5,10 +5,11 @@ Version 1.0 is made within 3 days as General Assembly project.
 Hosted at Render.
 [Use it here](https://lab-tech-finder.onrender.com/)
 
+To get started, create your own lab by [Signing Up](https://lab-tech-finder.onrender.com/lab/new)!
 
 # Features
 
-### Daily News
+## Daily News
 Implemented [Axios](https://axios-http.com/) client to use the [newsdata](https://newsdata.io/) API. The news are the top-5 of the first page of the response from a curated list of news source.
 
 It's not perfect, though, as the API is unable to capture pictures and articles reliably at times. For example, it can't capture both the picture and article from sciencealert.
@@ -19,17 +20,17 @@ The key is hardcoded with a maximum of 200 requests a day. So far I have not hit
 
 ---
 
-### Standard Convention CRUD features
+## Standard Convention CRUD features
 Create, Read, Update and Delete entries from a database. For this project, postgreSQL is used.
 
 ---
 
-### One truth to rule them all
+## One truth to rule them all
 The database relies on laboratory id as a common denominator for all tables. This ensures appropriate labeling on all the CRUD proceses.
 
 ---
 
-### Dynamic Search feature
+## Dynamic Search feature
 All searches are case insensitive. It will detect search based on partial entries.
 
 e.g. prot => proteomics
@@ -44,13 +45,25 @@ You have the options to search using different types of queries. For example to 
 
 ---
 
-### Clean and SAFE
+## Clean and SAFE
 
 The dynamic search feature above is only possible due to the dynamic query string constructor.
 
 Both the string constructor and the parameters are constructed based on how long segmented search terms are. They are then sanitised when passed into the database.
 
 The app also uses [bcrypt](https://www.npmjs.com/package/bcrypt) to encrypt your password. I definitely do not know that your password is *1234*
+
+---
+
+## Access restrictions 
+- Non-lab members can't edit other lab details at any level.
+- Only PIs are allowed to delete their own lab
+- Only PIs and Managers are allowed to update lab information.
+- Only PIs, Managers and Self are allowed to "remove" a lab member up to their level.
+- Only PIs and Managers are allowed to "add" a new lab member
+- Only PIs and Managers are allowed to update a lab member's role up to one below their rank.
+- Only a user can update their own skill list and password.
+- Guests do not have any edit access. Only browse and sign up (and maybe message).
 
 ---
 
@@ -97,8 +110,8 @@ Note: So far, projects and field tables are not available yet.
 | | | |
 | Get all messages | Get | /social/messages/:userid | Y
 | Delete a message | Delete | /social/messages/:userid | Y
-| Send a message form | Get | /social/send |
-| Send a message | Post | /social/messages/:userid |
+| Send a message form | Get | /social/send | Y
+| Send a message | Post | /social/messages/:userid | Y
 
 Note: more details in artefacts.
 
@@ -109,24 +122,17 @@ Note: more details in artefacts.
 - [x] Search by skills
 - [x] Access level-based functionality
 - [ ] More seeds!
-- [ ] Direct messaging
+- [x] Direct messaging
 - [ ] Clean messages submission from apostrophe 
 - [ ] 1 account per e-mail limit
+- [ ] New message alert
 - [ ] Image cloud hosting at cloudinary
 - [ ] Proper reactive styling in small screen
 
 
 
 
-## Access restrictions (in production)
-- [x] Non-lab members can't edit other lab details at any level.
-- [x] Only PIs are allowed to delete their own lab
-- [x] Only PIs and Managers are allowed to update lab information.
-- [x] Only PIs, Managers and Self are allowed to "remove" a lab member up to their level.
-- [x] Only PIs and Managers are allowed to "add" a new lab member
-- [x] Only PIs and Managers are allowed to update a lab member's role up to one below their rank.
-- [x] Only a user can update their own skill list and password.
-- [x] Guests do not have any edit access. Only browse and sign up (and maybe message).
+
 
 ---
 
@@ -143,6 +149,7 @@ There are some sample pictures in the public directory. Use them whenever approp
 
 ## To Do List (For Later)
 - [ ] UI Fixes
+- [ ] Script to reset lost password
 - [ ] Write more comments, especially the dynamic db query.
 - [ ] Add useful links.
 - [ ] Add the Abouts page with the content of this documentation.

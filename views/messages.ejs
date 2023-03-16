@@ -11,7 +11,7 @@
             <div class="sender"><%= message.sender %></div>
             <div class="subject"><%= message.subject %></div>
             <div class="message"><%= message.message %></div>
-            <form action="" class="trash-can" method="post"> 
+            <form action="/social/messages" class="trash-can" method="post"> 
                 <input type="hidden" name="_method" value="DELETE">
                 <input type="hidden" name="messageid" value="<%= message.messageid %>">
                 <input type="hidden" name="userid" value="<%= message.receiverid %>">

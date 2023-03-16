@@ -10,6 +10,9 @@
         <div class="contacts">
             <article>Email: <span><%= data.userData.email %></span></article>
             <article>Lab Email: <span><%= data.labData.email %></span></article>
+            <form action="/social/send/<%= data.userData.userid %>">
+                <button>Message <%= data.userData.name.split(' ')[0] %></button>
+            </form>
         </div>
     </section>
     <section class="">

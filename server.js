@@ -55,72 +55,34 @@ app.get([`/`, `/home`], (req, res) => {
     // News API
     // let acceptedSource = [`technews`, `nasa`, `sciencealert`, `theguardian`, `gizmodo`, `phys`]
     let acceptedSource = [`technews`, `nasa`, `theguardian`, `gizmodo`, `phys`]
+    // let acceptedSource = [`technews`, `nasa`, `theguardian`, `gizmodo`]
     let top5News = []
     let url = 'https://newsdata.io/api/1/news?apikey=pub_18880686ef76f718468c45fffd56a1c37e408&country=au&language=en&category=science&page'
     
-    // axios.request(url).then(function (response) {
-    //     let counter = 0
-    //     for (i = 0; counter < 5; i++) {
-    //         news = response.data.results[i]
-    //         if (acceptedSource.includes(news.source_id)) {
-    //             top5News.push(news)
-    //             // console.log(`got one`);
-    //             counter++
-    //         }
-    //         // console.log(news.source_id);
-    //         if (i == response.data.results.length - 1) {
-    //             break
-    //         }
-    //     }
-        // res.render(`home`, {top5News, session: req.session})
+    axios.request(url).then(function (response) {
+        let counter = 0
+        for (i = 0; counter < 5; i++) {
+            news = response.data.results[i]
+            if (acceptedSource.includes(news.source_id)) {
+                top5News.push(news)
+                // console.log(`got one`);
+                counter++
+            }
+            // console.log(news.source_id);
+            if (i == response.data.results.length - 1) {
+                break
+            }
+        }
         res.render(`home`, {top5News, session: req.session})
-    // }).catch(function (error) {
-    //     console.error(error);
-    // });
+    }).catch(function (error) {
+        console.error(error);
+    });
 })
 
 
 app.use(`/lab`, labController) // router for laboratories
 app.use(`/user`, userController) // router for users
 app.use(`/social`, socialController) // router for users
-
-
-// const db = require(`./db`)
-// db.connect()
-
-
-
-
-
-
-// app.get(`/lab/lab_search`, (req, res) => {
-//     const sql = `SELECT * FROM laboratories WHERE labid > 1;`
-
-//     db.query(sql, (err, dbRes) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//         let data = {}
-//         data.title = 'Laboratories'
-//         data.label = 'lab'
-//         data.entries = dbRes.rows
-//         res.render(`search`, {data})
-//     })
-
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
