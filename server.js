@@ -12,7 +12,7 @@ const axios = require("axios");
 const sessionController = require(`./controllers/session_controller`)
 const labController = require(`./controllers/lab_controller`)
 const userController = require(`./controllers/user_controller`)
-console.log(labController);
+// console.log(labController);
 
 
 

@@ -85,8 +85,9 @@ Note: So far, projects and field tables are not available yet.
 | Update lab member details form | GET | /user/:userid/edit | Y
 | Update user details | PUT/PATCH | /user/:userid | Y
 | | | |
-| Log in form | GET | /session |
-| Log in | POST | | 
+| Log in form | GET | /session/login | Y
+| Log in | POST | /session | Y
+| Log out | DELETE | /session | Y
 | | | |
 | Useful links | GET | /links |
 | About page | GET | /about |
@@ -96,7 +97,7 @@ Note: more details in artefacts.
 ---
 
 ## Upcoming features
-- [ ] Search by skills
+- [x] Search by skills
 - [ ] Access level-based functionality
 - [ ] Direct messaging
 - [ ] 1 account per e-mail limit
@@ -122,14 +123,13 @@ Note: more details in artefacts.
 There are some sample pictures in the public directory. Use them whenever appropriate.
 
 ## Bugs
-1. Deployment issues. Load the page but got error message.
+<!-- 1. Deployment issues. Load the page but got error message. -->
 2. Still dont understand how HTTP methods work. What is a "resource" and why post is different from put / patch?
-3. Couldn't get put/patch working. using post for now
-4. Adding new lab member causes a bug where the picture not loaded properly. Exiting the page and reentering works, though. Currently redirecting to lab page to circumvent this problem.
-5. Need to make footer at least positioned at 100vh.
+<!-- 4. Adding new lab member causes a bug where the picture not loaded properly. Exiting the page and reentering works, though. Currently redirecting to lab page to circumvent this problem. -->
+<!-- 5. Need to make footer at least positioned at 100vh. -->
 
 ## To Do List (For Later)
-- [ ] Login Sessions
+- [x] Login Sessions
 - [ ] UI Fixes
 - [ ] Write more comments, especially the dynamic db query.
 - [ ] Add useful links.

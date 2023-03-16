@@ -238,8 +238,8 @@ router.get(`/:labid`, (req,res) => {
 })
 
 
-// Update user
-router.post(`/edit/:userid`, (req, res) => {
+// Update lab
+router.put(`/edit/:labid`, (req, res) => {
     const labid = req.body.labid
     const labName = req.body.labName
     const desc = req.body.description

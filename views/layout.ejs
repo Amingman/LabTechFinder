@@ -41,9 +41,9 @@
                 <section class="accounts">
                     <!-- Display First Name or Guest -->
                     <% if (session.activeUserId) { %>
-                        <p>User: <%= session.activeUserName.split(' ')[0] %> </p>
+                        <p><%= session.activeUserName.split(' ')[0] %> </p>
                     <% } else { %>
-                        <p>User: Guest </p>
+                        <p>Guest </p>
                     <% } %>
                 </section>
             </section>

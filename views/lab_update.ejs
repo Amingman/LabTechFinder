@@ -2,6 +2,7 @@
 <h1 class="welcome"><%= data.labData.name %></h1>
 
 <form action="/lab/edit/<%= data.labData.labid %>" class="form" style="padding: 10px" method="post" id="update">
+    <input type="hidden" name="_method" value="PUT">
     <input type="hidden" name="labid" value="<%= data.labData.labid %>">
     <section class="metrics">
         <div>

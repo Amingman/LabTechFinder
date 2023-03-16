@@ -110,6 +110,78 @@ router.post(`/user_search/bylab`, (req, res) => {
 
 })
 
+
+
+router.post(`/user_search/byskill`, (req, res) => {
+    let skill = req.body.skill
+    let skills = skill.split(` `)
+    let stringSkill  = [] // The search terms as array
+    skills.forEach(skill => {
+        stringSkill.push(`%${skill.toLowerCase()}%`)
+    });
+
+    // Dynamic string query sanitisation setup
+    let sql = `SELECT DISTINCT userid FROM skills WHERE LOWER(skill) LIKE `
+    for (let i = 0; i < stringSkill.length; i++) {
+        sql = `${sql} $${i+1}`
+        if (i < stringSkill.length - 1) {
+            sql = `${sql} OR LOWER(skill) LIKE `
+        }
+    }    
+    sql = `${sql};`
+
+    db.query(sql, stringSkill, (err, dbRes) => {
+        if (err) {
+            console.log(err);
+        }
+        let data = {}
+        users = [] 
+        constructor = []
+        // dbRes.rows.forEach(userid => {users.splice(1, 0, userid.userid)})
+        dbRes.rows.forEach((userid, index) => {
+            users.push(userid.userid)
+            constructor.push(`$${index+1}`)
+        })
+        constructor = constructor.join(`, `)
+        constructor = `(${constructor})`
+        // res.send(users)
+
+        let sqlUser = `SELECT * FROM users WHERE userid IN ${constructor};`
+        // let sqlUser = `SELECT * FROM users WHERE userid IN ${users};`
+        db.query(sqlUser, users, (err, dbResUser) => {
+        // db.query(sqlUser, (err, dbResUser) => {
+            if (err) {
+                console.log(err);
+            } else {
+                let data = {}
+                
+                data.title = 'Researchers'
+                data.label = 'user'
+                data.entries = dbResUser.rows
+                res.render(`search`, {data, session: req.session})
+            }
+        })
+
+
+        // res.render(`search`, {data, session: req.session})
+    })
+})
+
+
+
+router.get(`/new`, (req, res) => {
+    const labid = req.query.labid
+    // console.log(`Lab ID @ /new`);
+    // console.log(labid);
+    const labName = req.query.labName
+    const labEmail = req.query.labEmail
+    // res.send(`${labid} ${labName}`)
+    let alert = ''
+    res.render(`user_add`, {labid, labName, labEmail, alert, session: req.session})
+})
+
+
+
 router.get(`/:userid`, (req,res) => {
     const userid = req.params.userid
     const sql = `SELECT * FROM users WHERE userid = $1;`
@@ -147,16 +219,10 @@ router.get(`/:userid`, (req,res) => {
     })
 })
 
-router.post(`/new`, (req, res) => {
-    const labid = req.body.labid
-    // console.log(`Lab ID @ /new`);
-    // console.log(labid);
-    const labName = req.body.labName
-    const labEmail = req.body.labEmail
-    // res.send(`${labid} ${labName}`)
-    let alert = ''
-    res.render(`user_add`, {labid, labName, labEmail, alert, session: req.session})
-})
+
+
+
+
 
 
 router.post(`/`, (req, res) => {
@@ -236,7 +302,7 @@ router.delete(`/`, (req, res) => {
 })
 
 // Update user
-router.post(`/edit/:userid`, (req, res) => {
+router.put(`/edit/:userid`, (req, res) => {
     const labid = req.body.labid
     const userid = req.body.userid
     const userName = req.body.userName
