@@ -1,0 +1,33 @@
+<% if (session.activeUserId == data.userid || session.activeUserID == 0) { %>
+
+    <h1 class="welcome"><%= session.activeUserName %>'s Messages</h1>
+
+    <section class="message-wrapper">
+        <div class="sender" style="font-size: 1.5em;">From</div>
+        <div class="subject" style="font-size: 1.5em;">Subject</div>
+        <div class="message" style="font-size: 1.5em;">Message</div>
+        <div class="trash-can-box"></div>
+        <% data.messages.forEach(message => { %>
+            <div class="sender"><%= message.sender %></div>
+            <div class="subject"><%= message.subject %></div>
+            <div class="message"><%= message.message %></div>
+            <form action="" class="trash-can" method="post"> 
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="messageid" value="<%= message.messageid %>">
+                <input type="hidden" name="userid" value="<%= message.receiverid %>">
+                <div style="height: 100%;" class="trash-can-box">
+                    <button class="fa trash-can-box trash-can">&#xf014;</button>
+                </div>
+            </form>
+        <% }); %>
+
+
+    </section>
+
+    
+
+
+<% } else { %>
+    <h1 class="welcome" style="color: red;">Access Restricted</h1>
+<% } %>
+

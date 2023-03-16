@@ -9,9 +9,11 @@ Hosted at Render.
 # Features
 
 ### Daily News
-Implemented [Axios](https://axios-http.com/) client to use the [newsdata](https://newsdata.io/) API. It's not perfect, though, as the API unable to capture pictures and articles reliable at times. For example, it can't capture both the picture and article from sciencealert.
+Implemented [Axios](https://axios-http.com/) client to use the [newsdata](https://newsdata.io/) API. The news are the top-5 of the first page of the response from a curated list of news source.
 
-The news are locked to Australia and *Science* category. Unfortunately the more *scientific* news sources tend to have poor image resolution.
+It's not perfect, though, as the API is unable to capture pictures and articles reliably at times. For example, it can't capture both the picture and article from sciencealert.
+
+The news are locked to Australia and *Science* parameters. Unfortunately the more *scientific* news sources tend to have poor image resolution. Probably because they are ripped from a journal.
 
 The key is hardcoded with a maximum of 200 requests a day. So far I have not hit that number, even during development, so I have no idea what will happen when it does.
 
@@ -91,19 +93,28 @@ Note: So far, projects and field tables are not available yet.
 | | | |
 | Useful links | GET | /links |
 | About page | GET | /about |
-| My lab | GET | /lab/:labid
+| My lab | GET | /lab/:labid | Y
+| | | |
+| Get all messages | Get | /social/messages/:userid | Y
+| Delete a message | Delete | /social/messages/:userid | Y
+| Send a message form | Get | /social/send |
+| Send a message | Post | /social/messages/:userid |
 
 Note: more details in artefacts.
 
 ---
 
 ## Upcoming features
+- [x] Login Sessions
 - [x] Search by skills
 - [x] Access level-based functionality
+- [ ] More seeds!
 - [ ] Direct messaging
+- [ ] Clean messages submission from apostrophe 
 - [ ] 1 account per e-mail limit
 - [ ] Image cloud hosting at cloudinary
-- [ ] Advanced search feature
+- [ ] Proper reactive styling in small screen
+
 
 
 
@@ -120,19 +131,25 @@ Note: more details in artefacts.
 ---
 
 ## Not real people
-**Disclaimer**: Photos are randomly generated from [This-Person-Does-Not-Exist](https://this-person-does-not-exist.com/en), an AI generated portrait generator. The names are also from various random names generator.
+**Disclaimer**: Photos are randomly generated from [This-Person-Does-Not-Exist](https://this-person-does-not-exist.com/en), an AI powered portrait generator. The names are also from various random name generators and items laying around my desk.
 
 There are some sample pictures in the public directory. Use them whenever appropriate.
 
 ## Bugs
 - Still dont understand how HTTP methods work. What is a "resource" and why post is different from put / patch?
 - What does ensure log in do?
+- I FORGOT TO ADD SUPER USER!
 <!-- 4. Adding new lab member causes a bug where the picture not loaded properly. Exiting the page and reentering works, though. Currently redirecting to lab page to circumvent this problem. -->
 
 ## To Do List (For Later)
-- [x] Login Sessions
 - [ ] UI Fixes
 - [ ] Write more comments, especially the dynamic db query.
 - [ ] Add useful links.
 - [ ] Add the Abouts page with the content of this documentation.
 - [ ] Remove commented out codes
+- [ ] Advanced search feature
+- [ ] Remove all "fired" people to 'unaffiliated' lab
+- [ ] More tables! Encrypted newsdata API keys table?
+
+
+![beautiful](./artefacts/beautiful.jpg)

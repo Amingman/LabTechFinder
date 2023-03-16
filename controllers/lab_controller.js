@@ -192,8 +192,8 @@ router.delete(`/`, (req, res) => {
     const labid = req.body.labid
     console.log(labid);
 
-    const sqlLab = `DELETE FROM laboratories WHERE labid = ${labid};`
-    db.query(sqlLab, (err, dbRes) => {
+    const sqlLab = `DELETE FROM laboratories WHERE labid = $1;`
+    db.query(sqlLab, [labid], (err, dbRes) => {
         if (err) {
             console.log(err);
         } 
@@ -201,8 +201,8 @@ router.delete(`/`, (req, res) => {
         //     res.redirect(`/`)
         // }
     })
-    const sqlUser = `DELETE FROM users WHERE labid = ${labid};`
-    db.query(sqlUser, (err, dbRes2) => {
+    const sqlUser = `DELETE FROM users WHERE labid = $1;`
+    db.query(sqlUser, [labid], (err, dbRes2) => {
         if (err) {
             console.log(err);
         } else {

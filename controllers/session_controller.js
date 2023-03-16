@@ -24,7 +24,7 @@ router.post(`/`, (req, res) => {
             console.log(err);
         } else {
             if (dbResUser.rows.length == 0) {
-                res.render(`login`, {alert:'User does not exist', session: req.session})
+                res.render(`login`, {alert:'Incorrect email or password', session: req.session})
             } else {
                 const userName = dbResUser.rows[0].name
                 const digPassword = dbResUser.rows[0].digpassword

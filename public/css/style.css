@@ -341,6 +341,7 @@ footer {
 
 .big-name {
     font-size: 2em;
+    /* font-size: fit; */
 }
 
 
@@ -518,7 +519,59 @@ article {
     max-width: 300px;
 }
 
+.message-wrapper {
+    display: grid;
+    border: 2px solid #4d75a4;
+    border-radius: 10px;
+    grid-template-columns: 100px 150px 1fr 40px;
+    /* column-gap: 0.5em; */
+    
+}
 
+.sender, .subject, .message {
+    padding: 5px;
+}
+
+.sender {
+    border-bottom: 1px solid #4d75a4;
+    border-right: 2px solid #4d75a4;
+    border-radius: 0px 0px 10px 0px;
+    box-shadow: 1px 1px 3px 0px black;
+    background-color: #a7d0ff8c;
+}
+
+.subject {
+    /* border-right: none; */
+    /* border-right: 1px solid #4d75a4; */
+    border-bottom: 1px solid #4d75a4;
+
+}
+
+.message {
+    border-bottom: 1px solid #4d75a4;
+}
+
+.trash-can-box {
+    display: grid;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-bottom: 1px solid #4d75a4;
+
+    align-items: center;
+    color: maroon;
+    font-size: 20px;
+    text-align: center;
+}
+
+.trash-can {
+    border: none;
+}
+
+.trash-can:hover {
+    text-decoration: underline;
+    background-color: rgb(191, 191, 191);
+}
 
 @media screen and (max-width: 500px) {
     header {
@@ -532,5 +585,9 @@ article {
     header button {
         font-size: 0.7em;
         margin-right: 0.5em;
+    }
+
+    .big-name {
+        font-size: 100%;
     }
 }

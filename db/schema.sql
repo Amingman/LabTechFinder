@@ -29,3 +29,11 @@ CREATE TABLE skills (
     skill TEXT
 );
 
+CREATE TABLE messages (
+    messageid SERIAL PRIMARY KEY,
+    labid INTEGER,
+    sender TEXT,
+    receiverid INTEGER,
+    subject TEXT,
+    message TEXT
+)
