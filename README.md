@@ -168,6 +168,7 @@ There are some sample pictures in the public directory. Use them whenever approp
 - Still dont understand how HTTP methods work exactly. What is a "resource" and why post is different from put / patch?
 - What does ensure log in do?
 - I FORGOT TO ADD SUPER USER!
+- Server keep crashing on deployment. Possible routing or resource issue?
 <!-- 4. Adding new lab member causes a bug where the picture not loaded properly. Exiting the page and reentering works, though. Currently redirecting to lab page to circumvent this problem. -->
 
 ## To Do List (For Later)
