@@ -23,6 +23,10 @@ The key is hardcoded with a maximum of 200 requests a day. So far I have not hit
 ## Standard Convention CRUD features
 Create, Read, Update and Delete entries from a database. For this project, postgreSQL is used.
 
+In essence, the all pages will be displayed using GET method, while the endpoint of POST, DELETE and PUT are redirected to a GET route.
+
+![Server](./artefacts/server.jpg)
+
 ---
 
 ## One truth to rule them all
@@ -42,6 +46,10 @@ e.g. prot gen => proteomics and genome
 ***All roads lead to Rome***
 
 You have the options to search using different types of queries. For example to find a particular lab, you can search for it using either the laboratory name or Principal Investigator's name (PI).
+
+## Database Structure
+
+![schema](./artefacts/Lab%20Tech%20Finder.png)
 
 ---
 
@@ -73,10 +81,8 @@ The app also uses [bcrypt](https://www.npmjs.com/package/bcrypt) to encrypt your
 
 ---
 
-# Database
 
-![schema](./artefacts/Lab%20Tech%20Finder.png)
-Note: So far, projects and field tables are not available yet.
+
 
 ## Routes
 | Items | Method | Route | Done? |
@@ -142,7 +148,7 @@ Note: more details in artefacts.
 There are some sample pictures in the public directory. Use them whenever appropriate.
 
 ## Bugs
-- Still dont understand how HTTP methods work. What is a "resource" and why post is different from put / patch?
+- Still dont understand how HTTP methods work exactly. What is a "resource" and why post is different from put / patch?
 - What does ensure log in do?
 - I FORGOT TO ADD SUPER USER!
 <!-- 4. Adding new lab member causes a bug where the picture not loaded properly. Exiting the page and reentering works, though. Currently redirecting to lab page to circumvent this problem. -->
