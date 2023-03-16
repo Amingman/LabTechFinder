@@ -7,7 +7,7 @@ db.connect()
 
 
 router.get(`/login`, (req, res) => {
-    res.render(`login`, {alert:null})
+    res.render(`login`, {alert:null, session: req.session})
 })
 
 
@@ -22,7 +22,7 @@ router.post(`/`, (req, res) => {
             console.log(err);
         } else {
             if (dbResUser.rows.length == 0) {
-                res.render(`login`, {alert:'User does not exist'})
+                res.render(`login`, {alert:'User does not exist', session: req.session})
             } else {
                 const userName = dbResUser.rows[0].name
                 const digPassword = dbResUser.rows[0].digpassword
@@ -46,7 +46,7 @@ router.post(`/`, (req, res) => {
     
                         res.redirect(`/`)
                     } else {
-                        res.render(`login`)
+                        res.render(`login`, {session: req.session})
                     }
                 })
     
@@ -58,15 +58,11 @@ router.post(`/`, (req, res) => {
 
 
 
-
-
-
-
-// router.delete(`/logout`, (req, res) => { // change this to delete instead of get when got time
-//     req.session.destroy(() => {
-//         res.redirect(`/`)
-//     })
-// })
+router.delete(`/logout`, (req, res) => { // change this to delete instead of get when got time
+    req.session.destroy(() => {
+        res.redirect(`/`)
+    })
+})
 
 
 

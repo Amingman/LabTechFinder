@@ -17,18 +17,37 @@
     <header>
         <img src="/images/Logo_head.png" alt="">
         <div>
+            <% if (session.activeUserId) { %>
+                <form action="/session/logout" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button><a href="">Log Out</a></button>
+                </form>
+            <% } else { %>
             <button><a href="/session/login">Log in</a></button>
+            <% } %>
+            <!-- <button><a href="/session/login">Log in</a></button> -->
             <button><a href="/lab/new">Sign up</a></button>
         </div>
     </header>
         <section class="main-wrapper">
-            <nav>
-                <li><a href="/"><h1>Home Page</h1></a></li>
-                <li><a href="/lab">Find a lab</a></li>
-                <li><a href="/user">Find a scientist</a></li>
-                <li><a href="/links">Useful Links</a></li>
-                <li><a href="/about">About</a></li>
-            </nav>
+            <section>
+                <nav>
+                    <li><a href="/"><h1>Home Page</h1></a></li>
+                    <li><a href="/lab">Find a lab</a></li>
+                    <li><a href="/user">Find a scientist</a></li>
+                    <li><a href="/links">Useful Links</a></li>
+                    <li><a href="/about">About</a></li>
+                </nav>
+                <section class="accounts">
+                    <!-- Display First Name or Guest -->
+                    <% if (session.activeUserId) { %>
+                        <p>User: <%= session.activeUserName.split(' ')[0] %> </p>
+                    <% } else { %>
+                        <p>User: Guest </p>
+                    <% } %>
+                </section>
+            </section>
+
             <section class="content">
 
                 <%- body %>

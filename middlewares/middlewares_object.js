@@ -51,6 +51,7 @@ function setCurrentUser(req, res, next) {
         res.locals.activeUserName = req.session.activeUserName
         res.locals.activeUserEmail = req.session.activeUserEmail
         res.locals.activeUserAccess = req.session.activeUserAccess
+        console.log((res.locals));
         next()
         // db.query(sql, (err, dbRes) => {
         //     // console.log(dbRes);
@@ -64,6 +65,12 @@ function setCurrentUser(req, res, next) {
         
     } else {
         console.log(`no ID`);
+        res.locals.activeLabId = undefined
+        res.locals.activeUserId = undefined
+        res.locals.activeUserName = undefined
+        res.locals.activeUserEmail = undefined
+        res.locals.activeUserAccess = undefined
+        console.log((res.locals));
         next()
     }
 

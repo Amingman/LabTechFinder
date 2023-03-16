@@ -105,6 +105,26 @@ a:hover {
     text-decoration: underline;
 }
 
+.accounts {
+    text-align: left;
+    display: grid;
+    padding: 5px;
+    list-style: none;
+    align-items: center;
+    gap: 0.5em;
+    align-content: start;
+    border-left: 3px solid lightgray;
+    border-bottom: 3px solid lightgray;
+    border-radius: 5px;
+    box-shadow: -7px 7px 10px 1px lightsteelblue;
+    min-width: 150px;
+    width: 10vw;
+    height: fit-content;
+    margin-top: 1em;
+
+}
+
+
 .content {
     padding: 10px;
     text-align: left;

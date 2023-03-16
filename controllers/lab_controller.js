@@ -15,7 +15,7 @@ db.connect()
 // })
 
 router.get(`/`, (req, res) => {
-    res.render(`lab_search`)
+    res.render(`lab_search`, {session: req.session})
 })
 
 router.get(`/lab_search`, (req, res) => {
@@ -29,7 +29,7 @@ router.get(`/lab_search`, (req, res) => {
         data.title = 'Laboratories'
         data.label = 'lab'
         data.entries = dbRes.rows
-        res.render(`search`, {data})
+        res.render(`search`, {data, session: req.session})
     })
 
 })
@@ -60,7 +60,7 @@ router.post(`/lab_search/byname`, (req, res) => {
         data.title = 'Laboratories'
         data.label = 'lab'
         data.entries = dbRes.rows
-        res.render(`search`, {data})
+        res.render(`search`, {data, session: req.session})
     })
 })
 
@@ -112,7 +112,7 @@ router.post(`/lab_search/bypi`, (req, res) => {
             data.title = 'Laboratories'
             data.label = 'lab'
             data.entries = dbRes2.rows
-            res.render(`search`, {data})
+            res.render(`search`, {data, session: req.session})
         })
     })
 
@@ -120,7 +120,7 @@ router.post(`/lab_search/bypi`, (req, res) => {
 
 router.get(`/new`, (req, res) => {
     let alert = ''
-    res.render(`lab_add`, {alert})
+    res.render(`lab_add`, {alert, session: req.session})
 })
 
 // Create new Lab and render the lab details page after
@@ -135,7 +135,7 @@ router.post(`/`, (req, res) => {
     const confirm = req.body.confirm
 
     if (piPass != confirm) {
-        res.render(`lab_add`, {alert:`Password does not match.`})
+        res.render(`lab_add`, {alert:`Password does not match.`, session: req.session})
     } else {
 
         const sqlLab = `INSERT INTO laboratories (name, description, email) VALUES ($1, $2, $3) RETURNING labid;`
@@ -179,7 +179,7 @@ router.post(`/`, (req, res) => {
                                     name:labName
                                 }
                             }
-                            res.render(`lab_page`, {data})
+                            res.render(`lab_page`, {data, session: req.session})
                         })
                     })
                 }) 
@@ -232,7 +232,7 @@ router.get(`/:labid`, (req,res) => {
             }
             data.userData = dbRes2.rows
             // res.send({data})
-            res.render(`lab_page`, {data})
+            res.render(`lab_page`, {data, session: req.session})
         })
     })
 })
@@ -282,7 +282,7 @@ router.get(`/edit/:labid`, (req, res) => {
             console.log(err);
         } else {
             data.labData = dbResLab.rows[0]
-            res.render(`lab_update`, {data})
+            res.render(`lab_update`, {data, session: req.session})
         }
     })
 })

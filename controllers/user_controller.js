@@ -7,7 +7,7 @@ const db = require(`../db`)
 db.connect()
 
 router.get(`/`, (req, res) => {
-    res.render(`user_search`)
+    res.render(`user_search`, {session: req.session})
 })
 
 router.get(`/user_search`, (req, res) => {
@@ -21,7 +21,7 @@ router.get(`/user_search`, (req, res) => {
         data.title = 'Researchers'
         data.label = 'user'
         data.entries = dbRes.rows
-        res.render(`search`, {data})
+        res.render(`search`, {data, session: req.session})
     })
 
 })
@@ -52,7 +52,7 @@ router.post(`/user_search/byname`, (req, res) => {
         data.title = 'Researchers'
         data.label = 'user'
         data.entries = dbRes.rows
-        res.render(`search`, {data})
+        res.render(`search`, {data, session: req.session})
     })
 })
 
@@ -104,7 +104,7 @@ router.post(`/user_search/bylab`, (req, res) => {
             data.title = 'Researchers'
             data.label = 'user'
             data.entries = dbRes2.rows
-            res.render(`search`, {data})
+            res.render(`search`, {data, session: req.session})
         })
     })
 
@@ -142,7 +142,7 @@ router.get(`/:userid`, (req,res) => {
             }
             data.skillData = dbRes3.rows
             // res.send(data)
-            res.render(`user_page`, {data})
+            res.render(`user_page`, {data, session: req.session})
         })
     })
 })
@@ -155,7 +155,7 @@ router.post(`/new`, (req, res) => {
     const labEmail = req.body.labEmail
     // res.send(`${labid} ${labName}`)
     let alert = ''
-    res.render(`user_add`, {labid, labName, labEmail, alert})
+    res.render(`user_add`, {labid, labName, labEmail, alert, session: req.session})
 })
 
 
@@ -176,7 +176,7 @@ router.post(`/`, (req, res) => {
 
 
     if (tempPassword != confirm) {
-        res.render(`user_add`, {labid, labName, alert:`Password does not match.`})
+        res.render(`user_add`, {labid, labName, alert:`Password does not match.`, session: req.session})
     } else {
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(tempPassword, salt, (err, digestedPass) => {
@@ -252,7 +252,7 @@ router.post(`/edit/:userid`, (req, res) => {
 
 
     if (password != confirm) {
-        res.render(`user_add`, {labid, labName, alert:`Password does not match.`})
+        res.render(`user_add`, {labid, labName, alert:`Password does not match.`, session: req.session})
     } else {
 
         const sqlDrop = `DELETE FROM skills WHERE userid = $1`
@@ -332,7 +332,7 @@ router.get(`/edit/:userid`, (req, res) => {
                 } else {
                     data.skillData = dbResSkill.rows
                     // res.send({data})
-                    res.render(`user_update`, {data, alert:''})
+                    res.render(`user_update`, {data, alert:'', session: req.session})
                 }
             })
         }

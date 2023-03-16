@@ -134,3 +134,4 @@ There are some sample pictures in the public directory. Use them whenever approp
 - [ ] Write more comments, especially the dynamic db query.
 - [ ] Add useful links.
 - [ ] Add the Abouts page with the content of this documentation.
+- [ ] Remove commented out codes

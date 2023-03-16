@@ -73,7 +73,8 @@ app.get([`/`, `/home`], (req, res) => {
             }
         }
         // res.send({top5News})
-        res.render(`home`, {top5News})
+        // res.send(req.session)
+        res.render(`home`, {top5News, session: req.session})
     }).catch(function (error) {
         console.error(error);
     });
