@@ -146,6 +146,7 @@ Note: more details in artefacts.
 - [x] Access level-based functionality
 - [ ] More seeds!
 - [x] Direct messaging
+- [ ] My Account link on layout
 - [ ] Clean messages submission from apostrophe 
 - [ ] 1 account per e-mail limit
 - [ ] New message alert
@@ -169,7 +170,7 @@ There are some sample pictures in the public directory. Use them whenever approp
 - What does ensure log in do?
 - I FORGOT TO ADD SUPER USER!
 - Server keep crashing on deployment. Possible routing or resource issue?
-<!-- 4. Adding new lab member causes a bug where the picture not loaded properly. Exiting the page and reentering works, though. Currently redirecting to lab page to circumvent this problem. -->
+<!-- 4. Adding new lab member causes a bug where the picture not loaded properly. Exiting the page and reentering works, though. This could be related to the -- problem! Currently redirecting to lab page to circumvent this problem. -->
 
 ## To Do List (For Later)
 - [ ] UI Fixes

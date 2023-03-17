@@ -36,4 +36,4 @@ CREATE TABLE messages (
     receiverid INTEGER,
     subject TEXT,
     message TEXT
-)
+);
