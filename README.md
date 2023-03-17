@@ -28,7 +28,7 @@ Implemented [Axios](https://axios-http.com/) client to use the [newsdata](https:
 
 It's not perfect, though, as the API is unable to capture pictures and articles reliably at times. For example, it can't capture both the picture and article from sciencealert.
 
-The news are locked to Australia and *Science* parameters. Unfortunately the more *scientific* news sources tend to have poor image resolution. Probably because they are ripped from a journal.
+The news are locked to ~~Australia and~~ *Science* parameters. Unfortunately the more *scientific* news sources tend to have poor image resolution. Probably because they are ripped from a journal.
 
 The key is hardcoded with a maximum of 200 requests a day. So far I have not hit that number, even during development, so I have no idea what will happen when it does.
 

@@ -55,19 +55,19 @@ app.get([`/`, `/home`], (req, res) => {
     // News API
     // let acceptedSource = [`technews`, `nasa`, `sciencealert`, `theguardian`, `gizmodo`, `phys`]
     let acceptedSource = [`technews`, `nasa`, `theguardian`, `gizmodo`, `phys`]
-    // let acceptedSource = [`technews`, `nasa`, `theguardian`, `gizmodo`]
+    // let acceptedSource = [`technews`, `nasa`, `theguardian`, `gizmodo`, `theconversation`]
     let top5News = []
-    let url = 'https://newsdata.io/api/1/news?apikey=pub_18880686ef76f718468c45fffd56a1c37e408&country=au&language=en&category=science&page'
+    let url = 'https://newsdata.io/api/1/news?apikey=pub_18880686ef76f718468c45fffd56a1c37e408&language=en&category=science&page'
     
     axios.request(url).then(function (response) {
         let counter = 0
         for (i = 0; counter < 5; i++) {
             news = response.data.results[i]
-            if (acceptedSource.includes(news.source_id)) {
+            // if (acceptedSource.includes(news.source_id)) {
                 top5News.push(news)
                 // console.log(`got one`);
                 counter++
-            }
+            // }
             // console.log(news.source_id);
             if (i == response.data.results.length - 1) {
                 break

@@ -1,5 +1,5 @@
 <h1 class="welcome">Welcome to Lab Tech Finder</h1>
-<h2 class="news" style="font-size: 1.7em;">Latest News in Australia</h2>
+<h2 class="news" style="font-size: 1.7em;">Latest News</h2>
 
 
 <% top5News.forEach(news => { %>
@@ -12,7 +12,9 @@
         <div class="news-image-wrapper">
             <img src="<%= news.image_url %>" alt="">
         </div>
+        <% if (news.description) { %>
         <article><%= news.description.split('Continue reading...')[0] %></article>
+        <% } %>
         <a class="continue" href="<%= news.link %>">Continue reading...</a>
 
     </section>
